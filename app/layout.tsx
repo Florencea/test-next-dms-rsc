@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "A DMS use app route",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   login,
   dashboard,
 }: Readonly<{
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-TW">
-      <body>{isLogin ? dashboard : login}</body>
+      <body>{(await isLogin()) ? dashboard : login}</body>
     </html>
   );
 }
