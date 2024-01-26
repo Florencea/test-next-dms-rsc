@@ -32,7 +32,7 @@ export const LoginForm = () => {
     <AntdThemeProvider>
       <Form {...formProps}>
         <Form.Item {...formItemProps.account}>
-          <Input />
+          <Input autoFocus />
         </Form.Item>
         <Form.Item {...formItemProps.password}>
           <Input.Password />
