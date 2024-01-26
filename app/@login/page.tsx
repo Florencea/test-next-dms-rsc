@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { LoginForm } from "./login-form";
 
 export const metadata: Metadata = {
-  title: "Login - Tingara DMS",
+  title: "登入 - Tingara DMS",
 };
 
 export default function Page() {

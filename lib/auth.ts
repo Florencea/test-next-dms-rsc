@@ -6,7 +6,7 @@ const COOKIE_PASSWORD = "Kpgdq5fYdE&Sy#FjouDCWaa5mwrL8QNd";
 const COOKIE_NAME = "tingarasec";
 
 export const DEFAULT_PUBLIC_ROUTE = "/";
-export const DEFAULT_PRIVATE_ROUTE = "/user";
+export const DEFAULT_PRIVATE_ROUTE = "/star";
 export const getSession = () =>
   getIronSession<Partial<Pick<User, "id" | "account" | "name">>>(cookies(), {
     password: COOKIE_PASSWORD,

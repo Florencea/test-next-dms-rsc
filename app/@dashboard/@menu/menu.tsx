@@ -1,6 +1,6 @@
 "use client";
 
-import { SmileOutlined, StarOutlined, UserOutlined } from "@ant-design/icons";
+import { SmileOutlined, StarOutlined } from "@ant-design/icons";
 import { Menu as AntdMenu, Layout, MenuProps } from "antd";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -20,11 +20,6 @@ export const NAV_HEIGHT = 64;
 export const NAV_PADDING = 20;
 
 const menuItems: MenuProps["items"] = [
-  {
-    key: "/user",
-    icon: <UserOutlined />,
-    label: "帳號管理",
-  },
   {
     key: "/star",
     icon: <StarOutlined />,
