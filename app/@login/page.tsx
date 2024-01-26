@@ -1,3 +1,4 @@
+import { Card, Col, Row } from "antd";
 import { Metadata } from "next";
 import { LoginForm } from "./login-form";
 
@@ -7,8 +8,12 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div>
-      <LoginForm />
-    </div>
+    <Row className="h-svh bg-primary" justify="center" align="middle">
+      <Col>
+        <Card title="Login">
+          <LoginForm />
+        </Card>
+      </Col>
+    </Row>
   );
 }

@@ -1,39 +1,44 @@
 "use client";
 
-import { useEffect } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { AntdThemeProvider } from "@/lib/antd";
+import { useAntdForm } from "@/lib/form";
+import { Form, Input } from "antd";
 import { login } from "./actions";
 
-const initialState = {
-  message: "",
-};
+interface LoginT {
+  account: string;
+  password: string;
+}
 
 export const LoginForm = () => {
-  const [state, formAction] = useFormState(login, initialState);
-  const { pending } = useFormStatus();
-
-  useEffect(() => {
-    if (state.message) {
-      window.alert(state.message);
-    }
-  }, [state]);
+  const { formProps, formItemProps, SubmitBtn } = useAntdForm<LoginT>({
+    formProps: {},
+    formItemProps: {
+      account: {
+        name: "account",
+        label: "帳號",
+        rules: [{ required: true }],
+      },
+      password: {
+        name: "password",
+        label: "密碼",
+        rules: [{ required: true }],
+      },
+    },
+    formAction: login,
+  });
 
   return (
-    <form action={formAction}>
-      <label htmlFor="account">
-        <input className="border" type="text" name="account" id="account" />
-      </label>
-      <label htmlFor="password">
-        <input
-          className="border"
-          type="password"
-          name="password"
-          id="password"
-        />
-      </label>
-      <button type="submit" aria-disabled={pending}>
-        Login
-      </button>
-    </form>
+    <AntdThemeProvider>
+      <Form {...formProps}>
+        <Form.Item {...formItemProps.account}>
+          <Input />
+        </Form.Item>
+        <Form.Item {...formItemProps.password}>
+          <Input.Password />
+        </Form.Item>
+        <SubmitBtn>Login</SubmitBtn>
+      </Form>
+    </AntdThemeProvider>
   );
 };
