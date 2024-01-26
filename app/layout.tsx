@@ -6,6 +6,7 @@ import zhTW from "antd/es/locale/zh_TW";
 import "dayjs/locale/zh-tw";
 import { Metadata } from "next";
 import { ReactNode } from "react";
+import { NAV_HEIGHT, NAV_PADDING } from "./@dashboard/@menu/menu";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -35,6 +36,14 @@ export default async function RootLayout({
                 colorLink: PRIMARY_COLOR,
                 colorLinkHover: PRIMARY_COLOR,
                 colorLinkActive: PRIMARY_COLOR,
+              },
+              components: {
+                Layout: {
+                  headerHeight: NAV_HEIGHT,
+                  headerPadding: NAV_PADDING,
+                  headerBg: "#fff",
+                  siderBg: "#fff",
+                },
               },
             }}
             autoInsertSpaceInButton={false}

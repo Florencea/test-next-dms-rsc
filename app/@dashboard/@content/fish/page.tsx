@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Fish - Tingara DMS",
+  title: "魚類管理 - Tingara DMS",
 };
 
 export default function Page() {
