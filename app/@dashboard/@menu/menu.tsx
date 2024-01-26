@@ -2,7 +2,8 @@
 
 import { SmileOutlined, StarOutlined } from "@ant-design/icons";
 import { Menu as AntdMenu, Layout, MenuProps } from "antd";
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const { Sider } = Layout;
 
@@ -23,17 +24,16 @@ const menuItems: MenuProps["items"] = [
   {
     key: "/star",
     icon: <StarOutlined />,
-    label: "星星管理",
+    label: <Link href="/star">星星管理</Link>,
   },
   {
     key: "/fish",
     icon: <SmileOutlined />,
-    label: "魚類管理",
+    label: <Link href="/fish">魚類管理</Link>,
   },
 ];
 
 export const Menu = () => {
-  const router = useRouter();
   const pathname = usePathname();
   return (
     <Sider
@@ -46,9 +46,6 @@ export const Menu = () => {
         mode="inline"
         defaultSelectedKeys={[pathname]}
         items={menuItems}
-        onClick={({ key }) => {
-          router.push(key);
-        }}
       />
     </Sider>
   );
