@@ -37,7 +37,7 @@ export const LoginForm = () => {
         <Form.Item {...formItemProps.password}>
           <Input.Password />
         </Form.Item>
-        <SubmitBtn>Login</SubmitBtn>
+        <SubmitBtn>登入</SubmitBtn>
       </Form>
     </AntdThemeProvider>
   );

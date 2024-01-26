@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <Row className="h-svh bg-primary" justify="center" align="middle">
       <Col>
-        <Card title="Login">
+        <Card title="登入">
           <LoginForm />
         </Card>
       </Col>

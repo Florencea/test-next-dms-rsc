@@ -37,6 +37,7 @@ export default async function RootLayout({
                 colorLinkActive: PRIMARY_COLOR,
               },
             }}
+            autoInsertSpaceInButton={false}
           >
             {(await isLogin()) ? dashboard : login}
           </ConfigProvider>
