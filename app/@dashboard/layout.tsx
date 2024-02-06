@@ -13,9 +13,12 @@ export default async function Layout({
   return (
     <div className="flex h-svh w-full flex-col bg-gray-50">
       <header>{header}</header>
-      <div className="flex grow">
+      <div className="flex grow overflow-hidden">
         {menu}
-        <main className="w-full p-3" style={{ marginLeft: MENU_WIDTH }}>
+        <main
+          className="w-full overflow-y-scroll p-3"
+          style={{ marginLeft: MENU_WIDTH }}
+        >
           {content}
         </main>
       </div>
