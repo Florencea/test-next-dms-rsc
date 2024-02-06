@@ -23,7 +23,7 @@ import {
 } from "./actions";
 
 export const TableForm = () => {
-  const { form, data, isLoading, msgContext } = useData<
+  const { form, data, isLoading } = useData<
     FishSearchParamsT,
     { list: FishRecordT[]; total: number }
   >({
@@ -111,7 +111,7 @@ export const TableForm = () => {
             <Link href={`/fish/${record.id}`}>
               <Button>查看</Button>
             </Link>
-            <Form {...formRemove.props} initialValues={{ id: record.id }}>
+            <Form {...formRemove.props}>
               <Form.Item {...formRemove.itemprops.id} className="hidden">
                 <Input />
               </Form.Item>
@@ -119,6 +119,7 @@ export const TableForm = () => {
                 title="你確定要刪除這筆資料嗎？"
                 icon={null}
                 onConfirm={() => {
+                  formRemove.instance.setFieldValue("id", record.id);
                   formRemove.instance.submit();
                   form.instance.submit();
                 }}
@@ -179,7 +180,6 @@ export const TableForm = () => {
         </Link>,
       ]}
     >
-      {msgContext}
       {msgContextRemove}
       <Space className="w-full" direction="vertical" size="large">
         <Form {...form.props}>

@@ -94,7 +94,7 @@ export const remove: ActionT = async (
 
     await prisma.fish.delete({ where: { id } });
 
-    return { status: "OK", message: "OK" };
+    return { status: "OK", message: "" };
   } catch (err) {
     return errorHandler(err);
   }
