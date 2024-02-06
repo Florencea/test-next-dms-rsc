@@ -5,7 +5,7 @@ import {
   DataError,
   type ActionT,
 } from "@/constants/constants";
-import { getSession } from "@/lib/auth";
+import { getCurrentUser } from "@/data/auth";
 import { prisma } from "@/prisma";
 import { verify } from "argon2";
 import { redirect } from "next/navigation";
@@ -38,7 +38,7 @@ export const login: ActionT<LoginT> = async (
         message: "Wrong password",
       });
 
-    const session = await getSession();
+    const session = await getCurrentUser();
     session.id = user.id;
     session.account = user.account;
     session.name = user.name;

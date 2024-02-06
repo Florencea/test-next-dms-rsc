@@ -9,6 +9,15 @@ export default {
       colors: {
         primary: geekblue[5],
       },
+      animation: {
+        "fade-in-up": "fade-in-up 0.2s ease-out",
+      },
+      keyframes: {
+        "fade-in-up": {
+          "0%": { opacity: "0", transform: "scale(1.05)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+      },
     },
   },
   plugins: [],

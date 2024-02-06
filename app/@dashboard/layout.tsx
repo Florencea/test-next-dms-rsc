@@ -1,5 +1,5 @@
+import { MENU_WIDTH } from "@/constants/theme";
 import { ReactNode } from "react";
-import { MENU_WIDTH } from "./@menu/menu";
 
 export default async function Layout({
   header,

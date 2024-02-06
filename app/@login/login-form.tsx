@@ -1,7 +1,6 @@
 "use client";
 
 import { useData } from "@/data/useData";
-import { AntdThemeProvider } from "@/lib/antd";
 import { Button, Form, Input } from "antd";
 import { login, type LoginT } from "./actions";
 
@@ -26,7 +25,7 @@ export const LoginForm = () => {
   });
 
   return (
-    <AntdThemeProvider>
+    <>
       {msgContext}
       <Form {...form.props}>
         <Form.Item {...form.itemprops.account}>
@@ -37,6 +36,6 @@ export const LoginForm = () => {
         </Form.Item>
         <Button {...form.buttonProps.submit}>登入</Button>
       </Form>
-    </AntdThemeProvider>
+    </>
   );
 };

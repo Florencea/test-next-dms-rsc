@@ -1,24 +1,12 @@
 "use client";
 
+import { MENU_WIDTH, NAV_HEIGHT } from "@/constants/theme";
 import { SmileOutlined, StarOutlined } from "@ant-design/icons";
 import { Menu as AntdMenu, Layout, MenuProps } from "antd";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const { Sider } = Layout;
-
-/**
- * Layout 左側選單寬度
- */
-export const MENU_WIDTH = 200;
-/**
- * Layout 頂部選單高度
- */
-export const NAV_HEIGHT = 64;
-/**
- * Layout 頂部選單內距
- */
-export const NAV_PADDING = 20;
 
 const menuItems: MenuProps["items"] = [
   {
@@ -44,7 +32,7 @@ export const Menu = () => {
       <AntdMenu
         className="h-svh"
         mode="inline"
-        defaultSelectedKeys={[pathname]}
+        defaultSelectedKeys={[pathname.split("/")?.[1]]}
         items={menuItems}
       />
     </Sider>

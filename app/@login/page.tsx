@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <Row className="h-svh bg-primary" justify="center" align="middle">
       <Col>
-        <Card title="登入">
+        <Card className="animate-fade-in-up" title="登入">
           <LoginForm />
         </Card>
       </Col>
