@@ -5,7 +5,7 @@ import {
   DataError,
   type ActionT,
 } from "@/constants/constants";
-import { getCurrentUser } from "@/data/auth";
+import { errorHandler, getCurrentUser } from "@/data/auth";
 import { prisma } from "@/prisma";
 import { verify } from "argon2";
 import { redirect } from "next/navigation";
@@ -44,11 +44,7 @@ export const login: ActionT<LoginT> = async (
     session.name = user.name;
     await session.save();
   } catch (err) {
-    if (err instanceof DataError) return err.toMessage();
-    return new DataError({
-      message: "Server error",
-      status: "SERVER_ERROR",
-    }).toMessage();
+    return errorHandler(err);
   }
   redirect(DEFAULT_PRIVATE_ROUTE);
 };
