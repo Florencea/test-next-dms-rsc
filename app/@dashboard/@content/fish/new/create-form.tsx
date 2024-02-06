@@ -14,7 +14,7 @@ import Link from "next/link";
 import { create, type FishCreateT } from "./actions";
 
 export const CreateForm = () => {
-  const { form, isLoading } = useData<FishCreateT, {}>({
+  const { form, isLoading, msgContext } = useData<FishCreateT, {}>({
     form: {
       props: {
         layout: "inline",
@@ -57,6 +57,7 @@ export const CreateForm = () => {
 
   return (
     <Card>
+      {msgContext}
       <Form {...form.props} className="w-full">
         <div className="mb-3 flex w-full items-center justify-between">
           <Breadcrumb

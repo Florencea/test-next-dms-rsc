@@ -23,7 +23,7 @@ import {
 } from "./actions";
 
 export const TableForm = () => {
-  const { form, data, isLoading } = useData<
+  const { form, data, isLoading, msgContext } = useData<
     FishSearchParamsT,
     { list: FishRecordT[]; total: number }
   >({
@@ -76,10 +76,11 @@ export const TableForm = () => {
     action: getList,
   });
 
-  const { form: formRemove, isLoading: isRemoving } = useData<
-    Pick<FishRecordT, "id">,
-    {}
-  >({
+  const {
+    form: formRemove,
+    isLoading: isRemoving,
+    msgContext: msgContextRemove,
+  } = useData<Pick<FishRecordT, "id">, {}>({
     form: {
       props: {},
       itemprops: {
@@ -178,6 +179,8 @@ export const TableForm = () => {
         </Link>,
       ]}
     >
+      {msgContext}
+      {msgContextRemove}
       <Space className="w-full" direction="vertical" size="large">
         <Form {...form.props}>
           <Form.Item {...form.itemprops.name}>

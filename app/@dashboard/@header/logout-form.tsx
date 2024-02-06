@@ -5,7 +5,7 @@ import { Button, Form } from "antd";
 import { logout } from "./actions";
 
 export const LogoutForm = () => {
-  const { form } = useData({
+  const { form, msgContext } = useData({
     form: {
       props: {},
       itemprops: {},
@@ -14,6 +14,7 @@ export const LogoutForm = () => {
   });
   return (
     <Form {...form.props}>
+      {msgContext}
       <Button {...form.buttonProps.submit} type="text">
         登出
       </Button>
