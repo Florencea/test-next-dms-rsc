@@ -36,11 +36,11 @@ export class DataError extends Error {
   }
 }
 
-export type ActionT<T = {}> = (
+export type ActionT<D = {}> = (
   prevState: unknown,
   formData: FormData,
 ) => Promise<{
-  data?: T;
+  data?: D;
   status: keyof typeof Code;
   message: string;
 }>;

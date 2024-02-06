@@ -5,7 +5,7 @@ import { Button, Form, Input } from "antd";
 import { login, type LoginT } from "./actions";
 
 export const LoginForm = () => {
-  const { form, msgContext } = useData<LoginT>({
+  const { form, msgContext } = useData<LoginT, {}>({
     form: {
       props: {},
       itemprops: {

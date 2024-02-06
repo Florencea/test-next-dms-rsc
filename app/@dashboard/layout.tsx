@@ -15,7 +15,7 @@ export default async function Layout({
       <header>{header}</header>
       <div className="flex grow">
         {menu}
-        <main className="p-3" style={{ marginLeft: MENU_WIDTH }}>
+        <main className="w-full p-3" style={{ marginLeft: MENU_WIDTH }}>
           {content}
         </main>
       </div>

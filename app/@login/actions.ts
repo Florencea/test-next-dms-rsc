@@ -15,7 +15,7 @@ export interface LoginT {
   password: string;
 }
 
-export const login: ActionT<LoginT> = async (
+export const login: ActionT<{}> = async (
   prevState: unknown,
   formData: FormData,
 ) => {

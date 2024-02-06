@@ -32,7 +32,7 @@ interface UseDataParamsT<T, D> {
     props: FormProps<T>;
     itemprops: { [K in keyof T]: FormItemPropsT<K> };
   };
-  action: ActionT<T>;
+  action: ActionT<D>;
 }
 
 interface UseDataT<T, D> {
@@ -90,7 +90,7 @@ export const useData = <T extends object = {}, D = undefined>(
           });
           action(formData);
         },
-        ...params.form,
+        ...params.form.props,
       },
       itemprops: params.form.itemprops,
       buttonProps: {
@@ -102,10 +102,15 @@ export const useData = <T extends object = {}, D = undefined>(
         reset: {
           htmlType: "reset",
           disabled: pending,
+          onClick: () => {
+            formInstance.resetFields();
+            formInstance.submit();
+          },
         },
       },
     },
     isLoading: pending,
+    data: state.data,
     msgContext,
   };
 };

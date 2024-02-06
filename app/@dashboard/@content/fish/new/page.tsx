@@ -1,14 +1,14 @@
 import { Metadata } from "next";
-import { TableForm } from "./table-form";
+import { CreateForm } from "./create-form";
 
 export const metadata: Metadata = {
-  title: "魚類管理 - Tingara DMS",
+  title: "新增魚類 - Tingara DMS",
 };
 
 export default function Page() {
   return (
     <div>
-      <TableForm />
+      <CreateForm />
     </div>
   );
 }
