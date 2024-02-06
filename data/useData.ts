@@ -1,6 +1,10 @@
 "use client";
 
-import { DEFAULT_PUBLIC_ROUTE, type ActionT } from "@/constants/constants";
+import {
+  DEFAULT_PUBLIC_ROUTE,
+  MSG_DURATION,
+  type ActionT,
+} from "@/constants/constants";
 import {
   Form,
   message,
@@ -62,12 +66,12 @@ export const useData = <T extends object = {}, D = undefined>(
 
   useEffect(() => {
     if (state.message) {
-      msg.info(state.message);
+      msg.info(state.message, MSG_DURATION / 1000);
     }
     if (state.status === "UNAUTHORIZED" && pathname !== DEFAULT_PUBLIC_ROUTE) {
       setTimeout(() => {
         router.refresh();
-      }, 4500);
+      }, MSG_DURATION);
     }
   }, [msg, state]);
 

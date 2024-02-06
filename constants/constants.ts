@@ -6,6 +6,8 @@ export const DEFAULT_PUBLIC_ROUTE = "/";
 
 export const DEFAULT_PRIVATE_ROUTE = "/fish";
 
+export const MSG_DURATION = 4500;
+
 export const Code = {
   OK: 200,
   CREATED: 201,
