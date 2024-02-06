@@ -1,3 +1,4 @@
+import { geekblue } from "@ant-design/colors";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -6,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#722ed1",
+        primary: geekblue[5],
       },
     },
   },
