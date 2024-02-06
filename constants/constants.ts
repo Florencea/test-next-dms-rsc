@@ -4,7 +4,7 @@ export const COOKIE_NAME = "tingarasec";
 
 export const DEFAULT_PUBLIC_ROUTE = "/";
 
-export const DEFAULT_PRIVATE_ROUTE = "/star";
+export const DEFAULT_PRIVATE_ROUTE = "/fish";
 
 export const Code = {
   OK: 200,

@@ -10,14 +10,14 @@ const { Sider } = Layout;
 
 const menuItems: MenuProps["items"] = [
   {
-    key: "/star",
-    icon: <StarOutlined />,
-    label: <Link href="/star">星星管理</Link>,
-  },
-  {
     key: "/fish",
     icon: <SmileOutlined />,
     label: <Link href="/fish">魚類管理</Link>,
+  },
+  {
+    key: "/star",
+    icon: <StarOutlined />,
+    label: <Link href="/star">星星管理</Link>,
   },
 ];
 
