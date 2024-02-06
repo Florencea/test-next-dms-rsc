@@ -23,10 +23,17 @@ import {
 } from "./actions";
 
 export const TableForm = () => {
-  const { form, data, isLoading } = useData<FishSearchParamsT, FishRecordT[]>({
+  const { form, data, isLoading } = useData<
+    FishSearchParamsT,
+    { list: FishRecordT[]; total: number }
+  >({
     form: {
       props: {
         layout: "inline",
+        initialValues: {
+          current: 1,
+          pageSize: 10,
+        },
       },
       itemprops: {
         name: {
@@ -54,6 +61,16 @@ export const TableForm = () => {
           label: "",
           rules: [{ required: false }],
         },
+        current: {
+          name: "current",
+          label: "",
+          rules: [{ required: false }],
+        },
+        pageSize: {
+          name: "pageSize",
+          label: "",
+          rules: [{ required: false }],
+        },
       },
     },
     action: getList,
@@ -78,6 +95,8 @@ export const TableForm = () => {
 
   const start = Form.useWatch("start", form.instance);
   const end = Form.useWatch("end", form.instance);
+  const current = Form.useWatch("current", form.instance);
+  const pageSize = Form.useWatch("pageSize", form.instance);
 
   const tableProps: TableProps<FishRecordT> = {
     rowKey: "id",
@@ -127,8 +146,23 @@ export const TableForm = () => {
           dayjs(record.createdAt).format("YYYY-MM-DD HH:mm:ss"),
       },
     ],
-    dataSource: data,
+    dataSource: data?.list,
     loading: isLoading,
+    pagination: {
+      showSizeChanger: true,
+      showTotal: (total, [start, end]) =>
+        `目前是 ${total} 筆中的 第 ${start} 筆到第 ${end} 筆`,
+      locale: {
+        items_per_page: "筆/頁",
+      },
+      current,
+      pageSize,
+      total: data?.total,
+      onChange: (page, pageSize) => {
+        form.instance.setFieldValue("current", page);
+        form.instance.setFieldValue("pageSize", pageSize);
+      },
+    },
   };
 
   useEffect(() => {

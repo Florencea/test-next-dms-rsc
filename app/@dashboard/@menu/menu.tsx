@@ -32,7 +32,7 @@ export const Menu = () => {
       <AntdMenu
         className="h-svh"
         mode="inline"
-        defaultSelectedKeys={[`/${pathname.split("/")?.[1]}`]}
+        selectedKeys={[`/${pathname.split("/")?.[1]}`]}
         items={menuItems}
       />
     </Sider>

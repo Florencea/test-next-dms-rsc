@@ -12,11 +12,13 @@ export interface FishSearchParamsT {
   period: [Dayjs, Dayjs];
   start: string;
   end: string;
+  current: number;
+  pageSize: number;
 }
 
 export type FishRecordT = Pick<Fish, "id" | "name" | "col1" | "createdAt">;
 
-export const getList: ActionT<FishRecordT[]> = async (
+export const getList: ActionT<{ list: FishRecordT[]; total: number }> = async (
   prevState: unknown,
   formData: FormData,
 ) => {
@@ -31,7 +33,23 @@ export const getList: ActionT<FishRecordT[]> = async (
     const col1 = formData.get("col1")?.toString() ?? "";
     const start = formData.get("start")?.toString() ?? "1900-01-01";
     const end = formData.get("end")?.toString() ?? "2999-12-31";
+    const current = Number(formData.get("current")?.toString() ?? "1");
+    const pageSize = Number(formData.get("pageSize")?.toString() ?? "10");
 
+    const total = await prisma.fish.count({
+      where: {
+        name: {
+          contains: name,
+        },
+        col1: {
+          contains: col1,
+        },
+        createdAt: {
+          gte: new Date(start),
+          lte: new Date(end),
+        },
+      },
+    });
     const list = await prisma.fish.findMany({
       where: {
         name: {
@@ -51,9 +69,11 @@ export const getList: ActionT<FishRecordT[]> = async (
         col1: true,
         createdAt: true,
       },
+      take: pageSize,
+      skip: (current - 1) * pageSize,
     });
 
-    return { data: list, status: "OK", message: "OK" };
+    return { data: { list, total }, status: "OK", message: "OK" };
   } catch (err) {
     return errorHandler(err);
   }
