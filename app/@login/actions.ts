@@ -1,21 +1,42 @@
 "use server";
 
-import { DEFAULT_PRIVATE_ROUTE, getSession } from "@/lib/auth";
+import {
+  DEFAULT_PRIVATE_ROUTE,
+  DataError,
+  type ActionT,
+} from "@/constants/constants";
+import { getSession } from "@/lib/auth";
 import { prisma } from "@/prisma";
 import { verify } from "argon2";
 import { redirect } from "next/navigation";
 
-export async function login(prevState: unknown, formData: FormData) {
+export interface LoginT {
+  account: string;
+  password: string;
+}
+
+export const login: ActionT<LoginT> = async (
+  prevState: unknown,
+  formData: FormData,
+) => {
   try {
     const account = formData.get("account")?.toString() ?? "";
     const password = formData.get("password")?.toString() ?? "";
     const user = await prisma.user.findUnique({ where: { account } });
 
-    if (!user) throw new Error("User not found");
+    if (!user)
+      throw new DataError({
+        status: "UNAUTHORIZED",
+        message: "User not found",
+      });
 
     const match = await verify(user.password, password);
 
-    if (!match) throw new Error("Wrong password");
+    if (!match)
+      throw new DataError({
+        status: "UNAUTHORIZED",
+        message: "Wrong password",
+      });
 
     const session = await getSession();
     session.id = user.id;
@@ -23,8 +44,11 @@ export async function login(prevState: unknown, formData: FormData) {
     session.name = user.name;
     await session.save();
   } catch (err) {
-    if (err instanceof Error) return { message: err.message };
-    return { message: "Server error" };
+    if (err instanceof DataError) return err.toMessage();
+    return new DataError({
+      message: "Server error",
+      status: "SERVER_ERROR",
+    }).toMessage();
   }
   redirect(DEFAULT_PRIVATE_ROUTE);
-}
+};

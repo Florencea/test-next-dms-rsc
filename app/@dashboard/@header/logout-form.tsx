@@ -1,18 +1,22 @@
 "use client";
 
-import { useAntdForm } from "@/lib/form";
-import { Form } from "antd";
+import { useData } from "@/data/useData";
+import { Button, Form } from "antd";
 import { logout } from "./actions";
 
 export const LogoutForm = () => {
-  const { formProps, SubmitBtn } = useAntdForm<{}>({
-    formProps: {},
-    formItemProps: {},
-    formAction: logout,
+  const { form } = useData({
+    form: {
+      props: {},
+      itemprops: {},
+    },
+    action: logout,
   });
   return (
-    <Form {...formProps}>
-      <SubmitBtn type="text">登出</SubmitBtn>
+    <Form {...form.props}>
+      <Button {...form.buttonProps.submit} type="text">
+        登出
+      </Button>
     </Form>
   );
 };

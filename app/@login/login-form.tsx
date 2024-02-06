@@ -1,43 +1,41 @@
 "use client";
 
+import { useData } from "@/data/useData";
 import { AntdThemeProvider } from "@/lib/antd";
-import { useAntdForm } from "@/lib/form";
-import { Form, Input } from "antd";
-import { login } from "./actions";
-
-interface LoginT {
-  account: string;
-  password: string;
-}
+import { Button, Form, Input } from "antd";
+import { login, type LoginT } from "./actions";
 
 export const LoginForm = () => {
-  const { formProps, formItemProps, SubmitBtn } = useAntdForm<LoginT>({
-    formProps: {},
-    formItemProps: {
-      account: {
-        name: "account",
-        label: "帳號",
-        rules: [{ required: true }],
-      },
-      password: {
-        name: "password",
-        label: "密碼",
-        rules: [{ required: true }],
+  const { form, msgContext } = useData<LoginT>({
+    form: {
+      props: {},
+      itemprops: {
+        account: {
+          name: "account",
+          label: "帳號",
+          rules: [{ required: true }],
+        },
+        password: {
+          name: "password",
+          label: "密碼",
+          rules: [{ required: true }],
+        },
       },
     },
-    formAction: login,
+    action: login,
   });
 
   return (
     <AntdThemeProvider>
-      <Form {...formProps}>
-        <Form.Item {...formItemProps.account}>
+      {msgContext}
+      <Form {...form.props}>
+        <Form.Item {...form.itemprops.account}>
           <Input autoFocus />
         </Form.Item>
-        <Form.Item {...formItemProps.password}>
+        <Form.Item {...form.itemprops.password}>
           <Input.Password />
         </Form.Item>
-        <SubmitBtn>登入</SubmitBtn>
+        <Button {...form.buttonProps.submit}>登入</Button>
       </Form>
     </AntdThemeProvider>
   );
