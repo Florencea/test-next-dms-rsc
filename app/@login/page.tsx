@@ -1,10 +1,9 @@
+import { generateMeta } from "@/utils/site";
 import { Card, Col, Row } from "antd";
 import { Metadata } from "next";
 import { LoginForm } from "./login-form";
 
-export const metadata: Metadata = {
-  title: "登入 - Tingara DMS",
-};
+export const metadata: Metadata = generateMeta("登入");
 
 export default function Page() {
   return (

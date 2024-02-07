@@ -30,6 +30,6 @@ export type ActionT<D = {}> = (
 ) => Promise<{
   data?: D;
   status: keyof typeof Code;
-  message: string;
+  message?: string;
 }>;
 export const MSG_DURATION = 4500;

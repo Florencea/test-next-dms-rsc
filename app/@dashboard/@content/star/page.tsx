@@ -1,8 +1,7 @@
+import { generateMeta } from "@/utils/site";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "星星管理 - Tingara DMS",
-};
+export const metadata: Metadata = generateMeta("星星管理");
 
 export default function Page() {
   return (

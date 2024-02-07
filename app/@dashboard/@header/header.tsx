@@ -1,6 +1,10 @@
 "use client";
 
+import { SITE_TITLE } from "@/configs/site";
+import { DEFAULT_PRIVATE_ROUTE } from "@/constants/route";
 import { Layout, Typography } from "antd";
+import Image from "next/image";
+import Link from "next/link";
 import { LogoutForm } from "./logout-form";
 
 const { Header: AntdHeader } = Layout;
@@ -13,7 +17,12 @@ interface Props {
 export const Header = ({ userName }: Props) => {
   return (
     <AntdHeader className="sticky top-0 z-10 flex w-full items-stretch justify-between">
-      <h1 className="text-lg font-bold">TINGARA DMS</h1>
+      <div className="flex items-center justify-start gap-3 text-lg font-bold">
+        <Link href={DEFAULT_PRIVATE_ROUTE}>
+          <Image src="/icon.svg" alt="logo" width={32} height={32} />
+        </Link>
+        <h1>{SITE_TITLE}</h1>
+      </div>
       <div className="flex shrink-0 items-center justify-end gap-3">
         <Text strong>{userName}</Text>
         <LogoutForm />

@@ -73,7 +73,7 @@ export const getList: ActionT<{ list: FishRecordT[]; total: number }> = async (
       skip: (current - 1) * pageSize,
     });
 
-    return { data: { list, total }, status: "OK", message: "OK" };
+    return { data: { list, total }, status: "OK" };
   } catch (err) {
     return errorHandler(err);
   }
@@ -94,7 +94,7 @@ export const remove: ActionT = async (
 
     await prisma.fish.delete({ where: { id } });
 
-    return { status: "OK", message: "" };
+    return { status: "OK" };
   } catch (err) {
     return errorHandler(err);
   }

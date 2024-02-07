@@ -55,7 +55,6 @@ export const useData = <T extends object = {}, D = undefined>(
 
   const [formInstance] = Form.useForm<T>();
   const [state, action] = useFormState(params.action, {
-    message: "",
     status: "OK",
   });
   const { pending } = useFormStatus();
@@ -63,6 +62,7 @@ export const useData = <T extends object = {}, D = undefined>(
 
   useEffect(() => {
     if (state.message) {
+      console.log("in", state);
       msg.info(state.message, MSG_DURATION / 1000);
     }
     if (state.status === "UNAUTHORIZED" && pathname !== DEFAULT_PUBLIC_ROUTE) {
@@ -70,7 +70,7 @@ export const useData = <T extends object = {}, D = undefined>(
         router.refresh();
       }, MSG_DURATION);
     }
-  }, [msg, state]);
+  }, [msg, pathname, router, state]);
 
   return {
     form: {

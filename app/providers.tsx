@@ -6,7 +6,7 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { App, ConfigProvider } from "antd";
 import zhTW from "antd/es/locale/zh_TW";
 import "dayjs/locale/zh-tw";
-import "./globals.css";
+import "tailwindcss/tailwind.css";
 
 interface Props {
   children?: React.ReactNode;

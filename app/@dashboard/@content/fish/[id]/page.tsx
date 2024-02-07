@@ -1,13 +1,12 @@
 import { DataError } from "@/constants/data";
 import { isLogin } from "@/data/auth";
 import { prisma } from "@/prisma";
+import { generateMeta } from "@/utils/site";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { View } from "./view";
 
-export const metadata: Metadata = {
-  title: "查看魚類 - Tingara DMS",
-};
+export const metadata: Metadata = generateMeta("查看魚類");
 
 const getItem = async (id: string) => {
   try {
