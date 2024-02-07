@@ -18,6 +18,10 @@ export const I18nSwitcher = () => {
       label: "English",
       key: "en-US",
     },
+    {
+      label: "日本語",
+      key: "ja-JP",
+    },
   ];
 
   return (
@@ -27,7 +31,7 @@ export const I18nSwitcher = () => {
         selectedKeys: [currentLocale],
         items,
         onClick: ({ key }) => {
-          if (key === "zh-TW" || key === "en-US") {
+          if (key === "zh-TW" || key === "en-US" || key === "ja-JP") {
             changeLocale(key);
           }
         },
