@@ -17,6 +17,7 @@ import {
 } from "antd";
 import dayjs from "dayjs";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import {
   getList,
@@ -25,19 +26,35 @@ import {
   type Datatable001SearchParamsT,
 } from "./actions";
 
-export const TableForm = () => {
+interface Props {
+  data?: ListT<Datatable001RecordT>;
+}
+
+export const TableForm = ({ data }: Props) => {
   const t = useI18n();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { renderText, renderDatetime } = useFormat();
-  const { form, data, isLoading } = useData<
+  const { form, isLoading } = useData<
     Datatable001SearchParamsT,
     ListT<Datatable001RecordT>
   >({
     form: {
       props: {
         layout: "inline",
-        initialValues: {
-          current: 1,
-          pageSize: 10,
+        onFinish: (values) => {
+          const params = new URLSearchParams();
+          Object.entries(values).forEach(([k, v]) => {
+            if (
+              typeof v === "string" ||
+              typeof v === "number" ||
+              typeof v === "boolean"
+            ) {
+              params.set(k, `${v}`);
+            }
+            router.replace(`${pathname}?${params.toString()}`);
+          });
         },
       },
       itemprops: {
@@ -184,8 +201,14 @@ export const TableForm = () => {
   };
 
   useEffect(() => {
-    form.instance.submit();
-  }, [form.instance]);
+    if (Array.from(searchParams.entries()).length > 0) {
+      form.instance.setFieldsValue(Object.fromEntries(searchParams.entries()));
+      form.instance.setFieldValue("period", [
+        searchParams.get("start") ? dayjs(searchParams.get("start")) : null,
+        searchParams.get("end") ? dayjs(searchParams.get("end")) : null,
+      ]);
+    }
+  }, [form.instance, searchParams]);
 
   return (
     <Card

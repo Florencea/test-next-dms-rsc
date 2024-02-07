@@ -5,6 +5,7 @@ import { useFormat } from "@/utils/client";
 import type { Datatable001 } from "@prisma/client";
 import { Breadcrumb, Button, Card, Descriptions } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Props {
   item?: Datatable001;
@@ -13,14 +14,20 @@ interface Props {
 export const View = ({ item }: Props) => {
   const backLink = "/datatable001";
   const t = useI18n();
+  const router = useRouter();
   const { renderText, renderDatetime, renderBoolean } = useFormat();
   return (
     <Card
       title={t("datatable001")}
       extra={[
-        <Link href={backLink} key="back" replace>
-          <Button>{t("back")}</Button>
-        </Link>,
+        <Button
+          key="back"
+          onClick={() => {
+            router.back();
+          }}
+        >
+          {t("back")}
+        </Button>,
       ]}
     >
       <div className="mb-3 flex w-full items-center justify-between">

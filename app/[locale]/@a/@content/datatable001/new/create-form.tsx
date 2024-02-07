@@ -15,6 +15,7 @@ import {
 } from "antd";
 import type { DefaultOptionType } from "antd/es/select";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { create, type Datatable001CreateT } from "./actions";
 
 interface Props {
@@ -25,6 +26,7 @@ interface Props {
 
 export const CreateForm = ({ options }: Props) => {
   const t = useI18n();
+  const router = useRouter();
   const { form, isLoading, msgContext } = useData<Datatable001CreateT, {}>({
     form: {
       props: {
@@ -149,9 +151,14 @@ export const CreateForm = ({ options }: Props) => {
       <Card
         title={t("datatable001")}
         extra={[
-          <Link href={backLink} key="back" replace>
-            <Button>{t("back")}</Button>
-          </Link>,
+          <Button
+            key="back"
+            onClick={() => {
+              router.back();
+            }}
+          >
+            {t("back")}
+          </Button>,
           <Button {...form.buttonProps.submit} key="submit" className="ml-3">
             {t("create")}
           </Button>,

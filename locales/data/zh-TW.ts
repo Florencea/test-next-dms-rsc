@@ -22,7 +22,7 @@ export default {
   reset: "重置",
   search: "搜尋",
   deleteConfirm: "你確定要刪除這筆資料嗎？",
-  back: "返回列表",
+  back: "返回",
   updatedAt: "最近更新時間",
   edit: "修改",
   save: "儲存",
