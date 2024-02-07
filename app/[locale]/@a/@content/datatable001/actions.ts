@@ -1,43 +1,39 @@
 "use server";
 
-import { DataError, type ActionT } from "@/constants/data";
-import { errorHandler, isLogin } from "@/data/auth";
+import { type ActionT, type ListT } from "@/constants/data";
+import { checkIsLogin, errorHandler } from "@/data/auth";
 import { prisma } from "@/prisma";
 import type { Datatable001 } from "@prisma/client";
-import type { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
+import { z } from "zod";
 
-export interface Datatable001SearchParamsT {
-  stringColumn1: string;
-  stringColumn2: string;
+const searchParamsSchema = z.object({
+  stringColumn1: z.coerce.string().default(""),
+  stringColumn2: z.coerce.string().default(""),
+  start: z.coerce.string().default("1900-01-01"),
+  end: z.coerce.string().default("2999-12-31"),
+  current: z.coerce.number().int().default(1),
+  pageSize: z.coerce.number().int().default(10),
+});
+
+export type Datatable001SearchParamsT = z.infer<typeof searchParamsSchema> & {
   period: [Dayjs, Dayjs];
-  start: string;
-  end: string;
-  current: number;
-  pageSize: number;
-}
+};
 
 export type Datatable001RecordT = Pick<
   Datatable001,
   "id" | "stringColumn1" | "stringColumn2" | "createdAt"
 >;
 
-export const getList: ActionT<{
-  list: Datatable001RecordT[];
-  total: number;
-}> = async (prevState: unknown, formData: FormData) => {
+export const getList: ActionT<ListT<Datatable001RecordT>> = async (
+  prevState: unknown,
+  formData: FormData,
+) => {
   try {
-    if (!(await isLogin()))
-      throw new DataError({
-        message: "Please login first",
-        status: "UNAUTHORIZED",
-      });
+    await checkIsLogin();
 
-    const stringColumn1 = formData.get("stringColumn1")?.toString() ?? "";
-    const stringColumn2 = formData.get("stringColumn2")?.toString() ?? "";
-    const start = formData.get("start")?.toString() ?? "1900-01-01";
-    const end = formData.get("end")?.toString() ?? "2999-12-31";
-    const current = Number(formData.get("current")?.toString() ?? "1");
-    const pageSize = Number(formData.get("pageSize")?.toString() ?? "10");
+    const { stringColumn1, stringColumn2, start, end, current, pageSize } =
+      searchParamsSchema.parse(Object.fromEntries(formData.entries()));
 
     const total = await prisma.datatable001.count({
       where: {
@@ -48,8 +44,8 @@ export const getList: ActionT<{
           contains: stringColumn2,
         },
         createdAt: {
-          gte: new Date(start),
-          lte: new Date(end),
+          gte: dayjs(start).startOf("day").toDate(),
+          lte: dayjs(end).endOf("day").toDate(),
         },
       },
     });
@@ -62,8 +58,8 @@ export const getList: ActionT<{
           contains: stringColumn2,
         },
         createdAt: {
-          gte: new Date(start),
-          lte: new Date(end),
+          gte: dayjs(start).startOf("day").toDate(),
+          lte: dayjs(end).endOf("day").toDate(),
         },
       },
       select: {
@@ -82,18 +78,18 @@ export const getList: ActionT<{
   }
 };
 
+const removeSchema = z.object({
+  id: z.coerce.string(),
+});
+
 export const remove: ActionT = async (
   prevState: unknown,
   formData: FormData,
 ) => {
   try {
-    if (!(await isLogin()))
-      throw new DataError({
-        message: "Please login first",
-        status: "UNAUTHORIZED",
-      });
+    await checkIsLogin();
 
-    const id = formData.get("id")?.toString() ?? "";
+    const { id } = removeSchema.parse(Object.fromEntries(formData.entries()));
 
     await prisma.datatable001.delete({ where: { id } });
 

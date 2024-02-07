@@ -1,5 +1,4 @@
-import { DataError } from "@/constants/data";
-import { isLogin } from "@/data/auth";
+import { checkIsLogin, errorHandler } from "@/data/auth";
 import { getI18n } from "@/locales/server";
 import { prisma } from "@/prisma";
 import { generateMeta, getServerPath } from "@/utils/server";
@@ -15,28 +14,32 @@ export async function generateMetadata({
   const { id } = params;
   const item = await getItem(id);
   const t = await getI18n();
-  return generateMeta(`${item?.stringColumn1} - ${t("datatable001")}`);
+  return item
+    ? generateMeta(`${item.stringColumn1} - ${t("datatable001")}`)
+    : generateMeta(t("datatable001"));
 }
 
 const getItem = async (id: string) => {
   try {
-    if (!(await isLogin()))
-      throw new DataError({
-        message: "Please login first",
-        status: "UNAUTHORIZED",
-      });
+    await checkIsLogin();
 
     const item = await prisma.datatable001.findUnique({ where: { id } });
     return item ?? undefined;
   } catch (err) {
-    if (err instanceof DataError && err.status === "UNAUTHORIZED")
-      redirect(getServerPath("/datatable001"));
-    return undefined;
+    errorHandler(err);
   }
 };
 
 export default async function Page({ params }: { params: { id: string } }) {
   const { id } = params;
   const item = await getItem(id);
-  return <div>{item ? <View item={item} /> : "魚類不存在"}</div>;
+  if (item) {
+    return (
+      <div>
+        <View item={item} />
+      </div>
+    );
+  } else {
+    redirect(getServerPath("/datatable001"));
+  }
 }

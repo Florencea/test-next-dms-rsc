@@ -7,19 +7,26 @@ import { prisma } from "@/prisma";
 import { getServerPath } from "@/utils/server";
 import { verify } from "argon2";
 import { redirect } from "next/navigation";
+import { z } from "zod";
 
-export interface LoginT {
-  account: string;
-  password: string;
-}
+const loginSchema = z
+  .object({
+    account: z.coerce.string(),
+    password: z.coerce.string(),
+  })
+  .required();
+
+export type LoginT = z.infer<typeof loginSchema>;
 
 export const login: ActionT<{}> = async (
   prevState: unknown,
   formData: FormData,
 ) => {
   try {
-    const account = formData.get("account")?.toString() ?? "";
-    const password = formData.get("password")?.toString() ?? "";
+    const { account, password } = loginSchema.parse(
+      Object.fromEntries(formData.entries()),
+    );
+
     const user = await prisma.user.findUnique({ where: { account } });
 
     if (!user)

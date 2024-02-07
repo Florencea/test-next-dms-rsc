@@ -24,4 +24,6 @@ export default {
   deleteConfirm: "この項目を削除してもよろしいですか?",
   back: "リストに戻る",
   updatedAt: "更新時間",
+  edit: "編集",
+  save: "保存",
 } as const;

@@ -1,5 +1,6 @@
 "use client";
 
+import type { ListT } from "@/constants/data";
 import { useData } from "@/data/useData";
 import { useI18n } from "@/locales/client";
 import { useClientPath, useFormat } from "@/utils/client";
@@ -29,7 +30,7 @@ export const TableForm = () => {
   const { renderText, renderDatetime } = useFormat();
   const { form, data, isLoading } = useData<
     Datatable001SearchParamsT,
-    { list: Datatable001RecordT[]; total: number }
+    ListT<Datatable001RecordT>
   >({
     form: {
       props: {
@@ -113,11 +114,15 @@ export const TableForm = () => {
         dataIndex: "id",
         width: 160,
         render: (_, record) => {
-          const itemLink = `${itemLinkPrefix}/${record.id}`;
+          const viewLink = `${itemLinkPrefix}/view/${record.id}`;
+          const editLink = `${itemLinkPrefix}/edit/${record.id}`;
           return (
             <Space>
-              <Link href={itemLink}>
+              <Link href={viewLink}>
                 <Button>{t("view")}</Button>
+              </Link>
+              <Link href={editLink}>
+                <Button>{t("edit")}</Button>
               </Link>
               <Form {...formRemove.props}>
                 <Form.Item {...formRemove.itemprops.id} className="hidden">
@@ -173,6 +178,7 @@ export const TableForm = () => {
       onChange: (page, pageSize) => {
         form.instance.setFieldValue("current", page);
         form.instance.setFieldValue("pageSize", pageSize);
+        form.instance.submit();
       },
     },
   };
@@ -215,6 +221,12 @@ export const TableForm = () => {
             <Input />
           </Form.Item>
           <Form.Item {...form.itemprops.end} className="hidden">
+            <Input />
+          </Form.Item>
+          <Form.Item {...form.itemprops.current} className="hidden">
+            <Input />
+          </Form.Item>
+          <Form.Item {...form.itemprops.pageSize} className="hidden">
             <Input />
           </Form.Item>
           <Button {...form.buttonProps.reset}>{t("reset")}</Button>

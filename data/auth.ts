@@ -38,3 +38,11 @@ export const errorHandler = (err: unknown) => {
     status: "SERVER_ERROR",
   }).toMessage();
 };
+
+export const checkIsLogin = async () => {
+  if (!(await isLogin()))
+    throw new DataError({
+      message: "Please login first",
+      status: "UNAUTHORIZED",
+    });
+};

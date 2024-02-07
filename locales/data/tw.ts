@@ -24,4 +24,6 @@ export default {
   deleteConfirm: "你確定要刪除這筆資料嗎？",
   back: "返回列表",
   updatedAt: "最近更新時間",
+  edit: "修改",
+  save: "儲存",
 } as const;

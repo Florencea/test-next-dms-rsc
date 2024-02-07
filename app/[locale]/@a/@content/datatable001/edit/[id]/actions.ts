@@ -3,12 +3,12 @@
 import { type ActionT } from "@/constants/data";
 import { checkIsLogin, errorHandler } from "@/data/auth";
 import { prisma } from "@/prisma";
-import { getServerPath } from "@/utils/server";
-import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
-const datatable001CreateSchema = z
+const datatable001EditSchema = z
   .object({
+    id: z.string(),
     stringColumn1: z.coerce.string(),
     stringColumn2: z.coerce.string(),
     stringColumn3: z.coerce.string(),
@@ -33,21 +33,22 @@ const datatable001CreateSchema = z
   })
   .required();
 
-export type Datatable001CreateT = z.infer<typeof datatable001CreateSchema>;
+export type Datatable001EditT = z.infer<typeof datatable001EditSchema>;
 
-export const create: ActionT<{}> = async (
+export const edit: ActionT<{}> = async (
   prevState: unknown,
   formData: FormData,
 ) => {
   try {
     await checkIsLogin();
 
-    const data = datatable001CreateSchema.parse(
+    const { id, ...data } = datatable001EditSchema.parse(
       Object.fromEntries(formData.entries()),
     );
-    await prisma.datatable001.create({ data });
+    await prisma.datatable001.update({ where: { id }, data });
+    revalidatePath("/datatable001");
+    return { status: "OK", message: "Data Saved" };
   } catch (err) {
     return errorHandler(err);
   }
-  redirect(getServerPath("/datatable001"));
 };

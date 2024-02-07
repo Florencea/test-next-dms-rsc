@@ -24,4 +24,6 @@ export default {
   deleteConfirm: "Are you sure you want to delete this item?",
   back: "Back to List",
   updatedAt: "Updated At",
+  edit: "Edit",
+  save: "Save",
 } as const;

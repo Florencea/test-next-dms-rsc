@@ -33,3 +33,7 @@ export type ActionT<D = {}> = (
   message?: string;
 }>;
 export const MSG_DURATION = 4500;
+export type ListT<D> = {
+  list: D[];
+  total: number;
+};
