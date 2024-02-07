@@ -7,7 +7,7 @@ import { Button, Dropdown, type MenuProps } from "antd";
 export const I18nSwitcher = () => {
   const t = useI18n();
   const currentLocale = useCurrentLocale();
-  const changeLocale = useChangeLocale();
+  const changeLocale = useChangeLocale({ preserveSearchParams: true });
 
   const items: MenuProps["items"] = [
     {
