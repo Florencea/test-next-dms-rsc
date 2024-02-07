@@ -1,6 +1,7 @@
 import { getI18n } from "@/locales/server";
 import { prisma } from "@/prisma";
 import { generateMeta } from "@/utils/server";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Metadata } from "next";
 import { CreateForm } from "./create-form";
 
@@ -23,7 +24,9 @@ export default async function Page() {
   const datatable002Options = await getDatatabel002Options();
   return (
     <div className="flex w-full">
-      <CreateForm options={{ datatable002: datatable002Options }} />
+      <AntdRegistry>
+        <CreateForm options={{ datatable002: datatable002Options }} />
+      </AntdRegistry>
     </div>
   );
 }

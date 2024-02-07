@@ -2,6 +2,7 @@ import { checkIsLogin, errorHandler } from "@/data/auth";
 import { getI18n } from "@/locales/server";
 import { prisma } from "@/prisma";
 import { generateMeta } from "@/utils/server";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import type { Datatable001 } from "@prisma/client";
 import dayjs from "dayjs";
 import { Metadata } from "next";
@@ -87,7 +88,9 @@ export default async function Page({
   const data = await getList(params);
   return (
     <div>
-      <TableForm data={data} />
+      <AntdRegistry>
+        <TableForm data={data} />
+      </AntdRegistry>
     </div>
   );
 }

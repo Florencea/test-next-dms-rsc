@@ -2,6 +2,7 @@ import { checkIsLogin, errorHandler } from "@/data/auth";
 import { getI18n } from "@/locales/server";
 import { prisma } from "@/prisma";
 import { generateMeta } from "@/utils/server";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Edit } from "./edit-form";
@@ -47,7 +48,9 @@ export default async function Page({ params }: { params: { id: string } }) {
   if (item) {
     return (
       <div className="flex w-full">
-        <Edit item={item} options={{ datatable002: datatable002Options }} />
+        <AntdRegistry>
+          <Edit item={item} options={{ datatable002: datatable002Options }} />
+        </AntdRegistry>
       </div>
     );
   } else {

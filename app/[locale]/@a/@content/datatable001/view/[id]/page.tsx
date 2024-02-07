@@ -2,6 +2,7 @@ import { checkIsLogin, errorHandler } from "@/data/auth";
 import { getI18n } from "@/locales/server";
 import { prisma } from "@/prisma";
 import { generateMeta } from "@/utils/server";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { View } from "./view";
@@ -36,7 +37,9 @@ export default async function Page({ params }: { params: { id: string } }) {
   if (item) {
     return (
       <div>
-        <View item={item} />
+        <AntdRegistry>
+          <View item={item} />
+        </AntdRegistry>
       </div>
     );
   } else {
