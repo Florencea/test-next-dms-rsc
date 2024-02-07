@@ -273,7 +273,6 @@ export const CreateForm = ({ options }: Props) => {
             <Form.Item
               {...form.itemprops.booleanColumn1}
               labelCol={{ span: 0 }}
-              valuePropName="checked"
             >
               <Radio.Group
                 options={[
@@ -287,7 +286,6 @@ export const CreateForm = ({ options }: Props) => {
             <Form.Item
               {...form.itemprops.booleanColumn2}
               labelCol={{ span: 0 }}
-              valuePropName="checked"
             >
               <Radio.Group
                 options={[
@@ -301,7 +299,6 @@ export const CreateForm = ({ options }: Props) => {
             <Form.Item
               {...form.itemprops.booleanColumn3}
               labelCol={{ span: 0 }}
-              valuePropName="checked"
             >
               <Radio.Group
                 options={[
@@ -315,7 +312,6 @@ export const CreateForm = ({ options }: Props) => {
             <Form.Item
               {...form.itemprops.booleanColumn4}
               labelCol={{ span: 0 }}
-              valuePropName="checked"
             >
               <Radio.Group
                 options={[
@@ -329,7 +325,6 @@ export const CreateForm = ({ options }: Props) => {
             <Form.Item
               {...form.itemprops.booleanColumn5}
               labelCol={{ span: 0 }}
-              valuePropName="checked"
             >
               <Radio.Group
                 options={[
