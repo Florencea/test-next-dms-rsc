@@ -7,8 +7,10 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { App, ConfigProvider } from "antd";
 import type { Locale } from "antd/es/locale";
 import enUS from "antd/es/locale/en_US";
+import jaJP from "antd/es/locale/ja_JP";
 import zhTW from "antd/es/locale/zh_TW";
 import "dayjs/locale/en";
+import "dayjs/locale/ja";
 import "dayjs/locale/zh-tw";
 import "tailwindcss/tailwind.css";
 
@@ -21,6 +23,7 @@ export const Providers = ({ children, locale }: Props) => {
   const localeMap: Record<string, Locale> = {
     "zh-TW": zhTW,
     "en-US": enUS,
+    "ja-JP": jaJP,
   };
 
   return (
