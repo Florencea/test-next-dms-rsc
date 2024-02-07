@@ -5,6 +5,7 @@ export default {
   logout: "登出",
   changeLocale: "變更系統語言",
   datatable001: "資料表001",
+  datatable002: "資料表002",
   create: "新增",
   view: "查看",
   remove: "刪除",

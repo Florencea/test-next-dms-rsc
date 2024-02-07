@@ -3,7 +3,7 @@
 import { MENU_WIDTH, NAV_HEIGHT } from "@/constants/theme";
 import { useI18n } from "@/locales/client";
 import { useClientPath } from "@/utils/client";
-import { SmileOutlined, StarOutlined } from "@ant-design/icons";
+import { BarChartOutlined } from "@ant-design/icons";
 import { Menu as AntdMenu, Layout, MenuProps } from "antd";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -19,15 +19,17 @@ export const Menu = () => {
   const menuItems: MenuProps["items"] = [
     {
       key: "datatable001",
-      icon: <SmileOutlined />,
+      icon: <BarChartOutlined />,
       label: (
         <Link href={`${menuLinkPrefix}/datatable001`}>{t("datatable001")}</Link>
       ),
     },
     {
       key: "datatable002",
-      icon: <StarOutlined />,
-      label: <Link href={`${menuLinkPrefix}/datatable002`}>星星管理</Link>,
+      icon: <BarChartOutlined />,
+      label: (
+        <Link href={`${menuLinkPrefix}/datatable002`}>{t("datatable002")}</Link>
+      ),
     },
   ];
 

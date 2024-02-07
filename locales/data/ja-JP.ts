@@ -5,6 +5,7 @@ export default {
   logout: "ログアウト",
   changeLocale: "システム言語を変更する",
   datatable001: "データテーブル001",
+  datatable002: "データテーブル002",
   create: "作成",
   view: "閲覧",
   remove: "削除",
