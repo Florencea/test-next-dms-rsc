@@ -1,6 +1,7 @@
 "use client";
 
 import { useData } from "@/data/useData";
+import { useClientPath } from "@/utils/client";
 import {
   Button,
   Card,
@@ -99,6 +100,8 @@ export const TableForm = () => {
   const current = Form.useWatch("current", form.instance);
   const pageSize = Form.useWatch("pageSize", form.instance);
 
+  const itemLinkPrefix = useClientPath("/fish");
+
   const tableProps: TableProps<FishRecordT> = {
     rowKey: "id",
     columns: [
@@ -106,32 +109,35 @@ export const TableForm = () => {
         title: "操作",
         dataIndex: "id",
         width: 160,
-        render: (_, record) => (
-          <Space>
-            <Link href={`/fish/${record.id}`}>
-              <Button>查看</Button>
-            </Link>
-            <Form {...formRemove.props}>
-              <Form.Item {...formRemove.itemprops.id} className="hidden">
-                <Input />
-              </Form.Item>
-              <Popconfirm
-                title="你確定要刪除這筆資料嗎？"
-                icon={null}
-                onConfirm={() => {
-                  formRemove.instance.setFieldValue("id", record.id);
-                  formRemove.instance.submit();
-                  form.instance.submit();
-                }}
-                okButtonProps={{ danger: true, type: "primary" }}
-                okText="是"
-                cancelText="否"
-              >
-                <Button danger>刪除</Button>
-              </Popconfirm>
-            </Form>
-          </Space>
-        ),
+        render: (_, record) => {
+          const itemLink = `${itemLinkPrefix}/${record.id}`;
+          return (
+            <Space>
+              <Link href={itemLink}>
+                <Button>查看</Button>
+              </Link>
+              <Form {...formRemove.props}>
+                <Form.Item {...formRemove.itemprops.id} className="hidden">
+                  <Input />
+                </Form.Item>
+                <Popconfirm
+                  title="你確定要刪除這筆資料嗎？"
+                  icon={null}
+                  onConfirm={() => {
+                    formRemove.instance.setFieldValue("id", record.id);
+                    formRemove.instance.submit();
+                    form.instance.submit();
+                  }}
+                  okButtonProps={{ danger: true, type: "primary" }}
+                  okText="是"
+                  cancelText="否"
+                >
+                  <Button danger>刪除</Button>
+                </Popconfirm>
+              </Form>
+            </Space>
+          );
+        },
       },
       {
         title: "名稱",

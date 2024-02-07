@@ -1,5 +1,6 @@
 "use client";
 
+import { useClientPath } from "@/utils/client";
 import type { Fish } from "@prisma/client";
 import { Breadcrumb, Card, Descriptions } from "antd";
 import dayjs from "dayjs";
@@ -10,12 +11,13 @@ interface Props {
 }
 
 export const View = ({ item }: Props) => {
+  const backLink = useClientPath("/fish");
   return (
     <Card>
       <div className="mb-3 flex w-full items-center justify-between">
         <Breadcrumb
           items={[
-            { title: <Link href="/fish">魚類管理</Link> },
+            { title: <Link href={backLink}>魚類管理</Link> },
             { title: item?.name },
           ]}
         />

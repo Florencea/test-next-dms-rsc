@@ -1,6 +1,7 @@
 "use client";
 
 import { useData } from "@/data/useData";
+import { useClientPath } from "@/utils/client";
 import {
   Breadcrumb,
   Button,
@@ -55,6 +56,8 @@ export const CreateForm = () => {
     action: create,
   });
 
+  const backLink = useClientPath("/fish");
+
   return (
     <Card>
       {msgContext}
@@ -62,7 +65,7 @@ export const CreateForm = () => {
         <div className="mb-3 flex w-full items-center justify-between">
           <Breadcrumb
             items={[
-              { title: <Link href="/fish">魚類管理</Link> },
+              { title: <Link href={backLink}>魚類管理</Link> },
               { title: "新增魚類" },
             ]}
           />

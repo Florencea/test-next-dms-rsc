@@ -1,10 +1,12 @@
 "use client";
 
 import { useData } from "@/data/useData";
+import { useI18n } from "@/locales/client";
 import { Button, Form } from "antd";
 import { logout } from "./actions";
 
 export const LogoutForm = () => {
+  const t = useI18n();
   const { form, msgContext } = useData({
     form: {
       props: {},
@@ -16,7 +18,7 @@ export const LogoutForm = () => {
     <Form {...form.props}>
       {msgContext}
       <Button {...form.buttonProps.submit} type="text">
-        登出
+        {t("logout")}
       </Button>
     </Form>
   );

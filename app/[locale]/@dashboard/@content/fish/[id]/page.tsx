@@ -1,6 +1,7 @@
 import { DataError } from "@/constants/data";
 import { isLogin } from "@/data/auth";
 import { prisma } from "@/prisma";
+import { getServerPath } from "@/utils/server";
 import { generateMeta } from "@/utils/site";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
@@ -20,7 +21,7 @@ const getItem = async (id: string) => {
     return item ?? undefined;
   } catch (err) {
     if (err instanceof DataError && err.status === "UNAUTHORIZED")
-      redirect("/fish");
+      redirect(getServerPath("/fish"));
     return undefined;
   }
 };

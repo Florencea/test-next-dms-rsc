@@ -2,6 +2,7 @@
 
 import { MSG_DURATION, type ActionT } from "@/constants/data";
 import { DEFAULT_PUBLIC_ROUTE } from "@/constants/route";
+import { useClientPath } from "@/utils/client";
 import {
   Form,
   message,
@@ -52,6 +53,7 @@ export const useData = <T extends object = {}, D = undefined>(
 ): UseDataT<T, D> => {
   const router = useRouter();
   const pathname = usePathname();
+  const publicPath = useClientPath(DEFAULT_PUBLIC_ROUTE);
 
   const [formInstance] = Form.useForm<T>();
   const [state, action] = useFormState(params.action, {
@@ -62,15 +64,14 @@ export const useData = <T extends object = {}, D = undefined>(
 
   useEffect(() => {
     if (state.message) {
-      console.log("in", state);
       msg.info(state.message, MSG_DURATION / 1000);
     }
-    if (state.status === "UNAUTHORIZED" && pathname !== DEFAULT_PUBLIC_ROUTE) {
+    if (state.status === "UNAUTHORIZED" && pathname !== publicPath) {
       setTimeout(() => {
         router.refresh();
       }, MSG_DURATION);
     }
-  }, [msg, pathname, router, state]);
+  }, [msg, pathname, publicPath, router, state]);
 
   return {
     form: {

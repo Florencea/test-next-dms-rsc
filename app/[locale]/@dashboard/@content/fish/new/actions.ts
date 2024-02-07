@@ -3,6 +3,7 @@
 import { DataError, type ActionT } from "@/constants/data";
 import { errorHandler, isLogin } from "@/data/auth";
 import { prisma } from "@/prisma";
+import { getServerPath } from "@/utils/server";
 import type { Fish } from "@prisma/client";
 import { redirect } from "next/navigation";
 
@@ -33,5 +34,5 @@ export const create: ActionT<{}> = async (
   } catch (err) {
     return errorHandler(err);
   }
-  redirect("/fish");
+  redirect(getServerPath("/fish"));
 };
