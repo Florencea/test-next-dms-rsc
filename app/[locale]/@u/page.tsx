@@ -2,7 +2,7 @@ import { getI18n } from "@/locales/server";
 import { generateMeta } from "@/utils/site";
 import { Card, Col, Row } from "antd";
 import { Metadata } from "next";
-import { I18nSwitcher } from "../@dashboard/@header/i18n-switcher";
+import { I18nSwitcher } from "../@a/@header/i18n-switcher";
 import { LoginForm } from "./login-form";
 
 export async function generateMetadata(): Promise<Metadata> {

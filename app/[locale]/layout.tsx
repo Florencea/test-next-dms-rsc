@@ -7,20 +7,18 @@ import { Providers } from "./providers";
 export const metadata: Metadata = generateMeta();
 
 export default async function RootLayout({
-  login,
-  dashboard,
+  u,
+  a,
   params: { locale },
 }: Readonly<{
-  login: ReactNode;
-  dashboard: ReactNode;
+  u: ReactNode;
+  a: ReactNode;
   params: { locale: string };
 }>) {
   return (
     <html lang="zh-TW">
       <body id="__next">
-        <Providers locale={locale}>
-          {(await isLogin()) ? dashboard : login}
-        </Providers>
+        <Providers locale={locale}>{(await isLogin()) ? a : u}</Providers>
       </body>
     </html>
   );
