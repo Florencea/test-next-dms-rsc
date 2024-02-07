@@ -4,16 +4,10 @@ import { DataError, type ActionT } from "@/constants/data";
 import { errorHandler, isLogin } from "@/data/auth";
 import { prisma } from "@/prisma";
 import { getServerPath } from "@/utils/server";
-import type { Datatable001 } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
-export type Datatable001CreateT = Omit<
-  Datatable001,
-  "id" | "createdAt" | "updatedAt"
->;
-
-const input = z
+const datatable001CreateSchema = z
   .object({
     stringColumn1: z.coerce.string(),
     stringColumn2: z.coerce.string(),
@@ -39,6 +33,8 @@ const input = z
   })
   .required();
 
+export type Datatable001CreateT = z.infer<typeof datatable001CreateSchema>;
+
 export const create: ActionT<{}> = async (
   prevState: unknown,
   formData: FormData,
@@ -50,7 +46,9 @@ export const create: ActionT<{}> = async (
         status: "UNAUTHORIZED",
       });
 
-    const data = input.parse(Object.fromEntries(formData.entries()));
+    const data = datatable001CreateSchema.parse(
+      Object.fromEntries(formData.entries()),
+    );
     await prisma.datatable001.create({ data });
   } catch (err) {
     return errorHandler(err);

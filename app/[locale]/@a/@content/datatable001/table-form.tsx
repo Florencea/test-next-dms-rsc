@@ -190,7 +190,7 @@ export const TableForm = () => {
     >
       {msgContextRemove}
       <Space className="w-full" direction="vertical" size="large">
-        <Form {...form.props}>
+        <Form {...form.props} className="gap-3">
           <Form.Item {...form.itemprops.stringColumn1}>
             <Input />
           </Form.Item>
@@ -215,9 +215,7 @@ export const TableForm = () => {
           <Form.Item {...form.itemprops.end} className="hidden">
             <Input />
           </Form.Item>
-          <Form.Item>
-            <Button {...form.buttonProps.reset}>{t("reset")}</Button>
-          </Form.Item>
+          <Button {...form.buttonProps.reset}>{t("reset")}</Button>
           <Button {...form.buttonProps.submit}>{t("search")}</Button>
         </Form>
         <Table {...tableProps} />

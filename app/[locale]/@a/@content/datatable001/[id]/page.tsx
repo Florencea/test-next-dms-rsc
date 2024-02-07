@@ -16,7 +16,7 @@ export async function generateMetadata({
   const { id } = params;
   const item = await getItem(id);
   const t = await getI18n();
-  return generateMeta(`${item?.name} - ${t("datatable001")}`);
+  return generateMeta(`${item?.stringColumn1} - ${t("datatable001")}`);
 }
 
 const getItem = async (id: string) => {
@@ -27,7 +27,7 @@ const getItem = async (id: string) => {
         status: "UNAUTHORIZED",
       });
 
-    const item = await prisma.fish.findUnique({ where: { id } });
+    const item = await prisma.datatable001.findUnique({ where: { id } });
     return item ?? undefined;
   } catch (err) {
     if (err instanceof DataError && err.status === "UNAUTHORIZED")

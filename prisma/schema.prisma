@@ -17,22 +17,10 @@ model User {
   name      String
 }
 
-model Fish {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String
-  col1      String
-  col2      Float
-  col3      String
-  col4      String
-  col5      String
-}
-
 model Datatable001 {
-  id             String       @id @default(uuid())
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
+  id             String        @id @default(uuid())
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
   stringColumn1  String
   stringColumn2  String
   stringColumn3  String
@@ -53,8 +41,8 @@ model Datatable001 {
   booleanColumn3 Boolean
   booleanColumn4 Boolean
   booleanColumn5 Boolean
-  datatable002   Datatable002 @relation(fields: [datatable002Id], references: [id])
-  datatable002Id String
+  datatable002   Datatable002? @relation(fields: [datatable002Id], references: [id])
+  datatable002Id String?
 }
 
 model Datatable002 {
