@@ -56,7 +56,7 @@ export const CreateForm = () => {
     action: create,
   });
 
-  const backLink = useClientPath("/fish");
+  const backLink = useClientPath("/datatable001");
 
   return (
     <Card>

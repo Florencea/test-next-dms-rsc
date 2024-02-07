@@ -1,6 +1,7 @@
 "use client";
 
 import { useData } from "@/data/useData";
+import { useI18n } from "@/locales/client";
 import { useClientPath } from "@/utils/client";
 import {
   Button,
@@ -24,6 +25,7 @@ import {
 } from "./actions";
 
 export const TableForm = () => {
+  const t = useI18n();
   const { form, data, isLoading } = useData<
     FishSearchParamsT,
     { list: FishRecordT[]; total: number }
@@ -100,7 +102,7 @@ export const TableForm = () => {
   const current = Form.useWatch("current", form.instance);
   const pageSize = Form.useWatch("pageSize", form.instance);
 
-  const itemLinkPrefix = useClientPath("/fish");
+  const itemLinkPrefix = useClientPath("/datatable001");
 
   const tableProps: TableProps<FishRecordT> = {
     rowKey: "id",
@@ -114,7 +116,7 @@ export const TableForm = () => {
           return (
             <Space>
               <Link href={itemLink}>
-                <Button>查看</Button>
+                <Button>{t("view")}</Button>
               </Link>
               <Form {...formRemove.props}>
                 <Form.Item {...formRemove.itemprops.id} className="hidden">
@@ -132,7 +134,7 @@ export const TableForm = () => {
                   okText="是"
                   cancelText="否"
                 >
-                  <Button danger>刪除</Button>
+                  <Button danger>{t("remove")}</Button>
                 </Popconfirm>
               </Form>
             </Space>
@@ -179,10 +181,10 @@ export const TableForm = () => {
 
   return (
     <Card
-      title="魚類管理"
+      title={t("datatable001")}
       extra={[
-        <Link key="create" href="/fish/new">
-          <Button>新增魚類</Button>
+        <Link key="create" href="/datatable001/new">
+          <Button>{t("create")}</Button>
         </Link>,
       ]}
     >

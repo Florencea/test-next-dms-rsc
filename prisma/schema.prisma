@@ -28,3 +28,42 @@ model Fish {
   col4      String
   col5      String
 }
+
+model Datatable001 {
+  id             String       @id @default(uuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  stringColumn1  String
+  stringColumn2  String
+  stringColumn3  String
+  stringColumn4  String
+  stringColumn5  String
+  floatColumn1   Float
+  floatColumn2   Float
+  floatColumn3   Float
+  floatColumn4   Float
+  floatColumn5   Float
+  integerColumn1 Int
+  integerColumn2 Int
+  integerColumn3 Int
+  integerColumn4 Int
+  integerColumn5 Int
+  booleanColumn1 Boolean
+  booleanColumn2 Boolean
+  booleanColumn3 Boolean
+  booleanColumn4 Boolean
+  booleanColumn5 Boolean
+  datatable002   Datatable002 @relation(fields: [datatable002Id], references: [id])
+  datatable002Id String
+}
+
+model Datatable002 {
+  id            String         @id @default(uuid())
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  stringColumn  String
+  floatColumn   Float
+  integerColumn Int
+  booleanColumn Boolean
+  Datatable001  Datatable001[]
+}

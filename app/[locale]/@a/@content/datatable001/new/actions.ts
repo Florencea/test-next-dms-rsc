@@ -34,5 +34,5 @@ export const create: ActionT<{}> = async (
   } catch (err) {
     return errorHandler(err);
   }
-  redirect(getServerPath("/fish"));
+  redirect(getServerPath("/datatable001"));
 };

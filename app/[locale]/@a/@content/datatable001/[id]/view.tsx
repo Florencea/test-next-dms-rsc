@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const View = ({ item }: Props) => {
-  const backLink = useClientPath("/fish");
+  const backLink = useClientPath("/datatable001");
   return (
     <Card>
       <div className="mb-3 flex w-full items-center justify-between">

@@ -21,7 +21,7 @@ const getItem = async (id: string) => {
     return item ?? undefined;
   } catch (err) {
     if (err instanceof DataError && err.status === "UNAUTHORIZED")
-      redirect(getServerPath("/fish"));
+      redirect(getServerPath("/datatable001"));
     return undefined;
   }
 };
