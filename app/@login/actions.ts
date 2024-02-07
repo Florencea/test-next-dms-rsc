@@ -1,10 +1,7 @@
 "use server";
 
-import {
-  DEFAULT_PRIVATE_ROUTE,
-  DataError,
-  type ActionT,
-} from "@/constants/constants";
+import { DataError, type ActionT } from "@/constants/data";
+import { DEFAULT_PRIVATE_ROUTE } from "@/constants/route";
 import { errorHandler, getCurrentUser } from "@/data/auth";
 import { prisma } from "@/prisma";
 import { verify } from "argon2";

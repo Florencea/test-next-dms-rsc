@@ -1,4 +1,4 @@
-import { DEFAULT_PUBLIC_ROUTE } from "@/constants/constants";
+import { DEFAULT_PUBLIC_ROUTE } from "@/constants/route";
 import { isLogin } from "@/data/auth";
 import { redirect } from "next/navigation";
 

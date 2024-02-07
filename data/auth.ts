@@ -1,6 +1,7 @@
 "use server";
 
-import { COOKIE_NAME, COOKIE_PASSWORD, DataError } from "@/constants/constants";
+import { COOKIE_NAME, COOKIE_PASSWORD } from "@/constants/auth";
+import { DataError } from "@/constants/data";
 import type { User } from "@prisma/client";
 import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";

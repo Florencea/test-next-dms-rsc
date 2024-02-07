@@ -1,6 +1,7 @@
 "use server";
 
-import { DEFAULT_PUBLIC_ROUTE, type ActionT } from "@/constants/constants";
+import { type ActionT } from "@/constants/data";
+import { DEFAULT_PUBLIC_ROUTE } from "@/constants/route";
 import { errorHandler, getCurrentUser } from "@/data/auth";
 import { redirect } from "next/navigation";
 

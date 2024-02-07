@@ -1,4 +1,4 @@
-import { DataError } from "@/constants/constants";
+import { DataError } from "@/constants/data";
 import { isLogin } from "@/data/auth";
 import { prisma } from "@/prisma";
 import { Metadata } from "next";

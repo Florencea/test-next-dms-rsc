@@ -1,10 +1,7 @@
 "use client";
 
-import {
-  DEFAULT_PUBLIC_ROUTE,
-  MSG_DURATION,
-  type ActionT,
-} from "@/constants/constants";
+import { MSG_DURATION, type ActionT } from "@/constants/data";
+import { DEFAULT_PUBLIC_ROUTE } from "@/constants/route";
 import {
   Form,
   message,

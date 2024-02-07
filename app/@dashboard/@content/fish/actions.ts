@@ -1,6 +1,6 @@
 "use server";
 
-import { DataError, type ActionT } from "@/constants/constants";
+import { DataError, type ActionT } from "@/constants/data";
 import { errorHandler, isLogin } from "@/data/auth";
 import { prisma } from "@/prisma";
 import type { Fish } from "@prisma/client";

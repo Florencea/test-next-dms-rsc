@@ -1,13 +1,3 @@
-export const COOKIE_PASSWORD = "Kpgdq5fYdE&Sy#FjouDCWaa5mwrL8QNd";
-
-export const COOKIE_NAME = "tingarasec";
-
-export const DEFAULT_PUBLIC_ROUTE = "/";
-
-export const DEFAULT_PRIVATE_ROUTE = "/fish";
-
-export const MSG_DURATION = 4500;
-
 export const Code = {
   OK: 200,
   CREATED: 201,
@@ -17,7 +7,6 @@ export const Code = {
   NOT_FOUND: 404,
   SERVER_ERROR: 500,
 };
-
 export class DataError extends Error {
   status: keyof typeof Code;
   constructor({
@@ -35,7 +24,6 @@ export class DataError extends Error {
     return { status: this.status, message: this.message };
   }
 }
-
 export type ActionT<D = {}> = (
   prevState: unknown,
   formData: FormData,
@@ -44,3 +32,4 @@ export type ActionT<D = {}> = (
   status: keyof typeof Code;
   message: string;
 }>;
+export const MSG_DURATION = 4500;
