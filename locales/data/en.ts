@@ -18,7 +18,7 @@ export default {
   tableShowTotal: "Currently the items {start} to {end} in {total}",
   tableItemPerPage: " / page",
   createdAt: "Created At",
-  operation: "Opeeration",
+  operation: "Operation",
   reset: "reset",
   search: "Search",
   deleteConfirm: "Are you sure you want to delete this item?",
