@@ -1,5 +1,5 @@
 import { isLogin } from "@/data/auth";
-import { generateMeta } from "@/utils/site";
+import { generateMeta } from "@/utils/server";
 import { Metadata } from "next";
 import { ReactNode } from "react";
 import { Providers } from "./providers";

@@ -6,7 +6,7 @@ import { useClientPath } from "@/utils/client";
 import { Layout, Typography } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import { I18nSwitcher } from "./i18n-switcher";
+import { I18nSwitcher } from "../../../../components/i18n-switcher";
 import { LogoutForm } from "./logout-form";
 
 const { Header: AntdHeader } = Layout;

@@ -1,5 +1,5 @@
 import { getI18n } from "@/locales/server";
-import { generateMeta } from "@/utils/site";
+import { generateMeta } from "@/utils/server";
 import { Metadata } from "next";
 import { TableForm } from "./table-form";
 

@@ -2,7 +2,7 @@
 
 import { useData } from "@/data/useData";
 import { useI18n } from "@/locales/client";
-import { useClientPath } from "@/utils/client";
+import { useClientPath, useFormat } from "@/utils/client";
 import {
   Button,
   Card,
@@ -26,6 +26,7 @@ import {
 
 export const TableForm = () => {
   const t = useI18n();
+  const { renderText, renderDatetime } = useFormat();
   const { form, data, isLoading } = useData<
     Datatable001SearchParamsT,
     { list: Datatable001RecordT[]; total: number }
@@ -144,16 +145,17 @@ export const TableForm = () => {
       {
         title: t("stringColumn", { idx: 1 }),
         dataIndex: "stringColumn1",
+        render: renderText,
       },
       {
         title: t("stringColumn", { idx: 2 }),
         dataIndex: "stringColumn2",
+        render: renderText,
       },
       {
         title: t("createdAt"),
         dataIndex: "createdAt",
-        render: (_, record) =>
-          dayjs(record.createdAt).format("YYYY-MM-DD HH:mm:ss"),
+        render: renderDatetime,
       },
     ],
     dataSource: data?.list,
@@ -183,7 +185,7 @@ export const TableForm = () => {
     <Card
       title={t("datatable001")}
       extra={[
-        <Link key="create" href="/datatable001/new">
+        <Link key="create" href={useClientPath("/datatable001/new")}>
           <Button>{t("create")}</Button>
         </Link>,
       ]}

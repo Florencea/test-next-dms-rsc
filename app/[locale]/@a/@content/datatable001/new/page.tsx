@@ -1,6 +1,6 @@
 import { getI18n } from "@/locales/server";
 import { prisma } from "@/prisma";
-import { generateMeta } from "@/utils/site";
+import { generateMeta } from "@/utils/server";
 import { Metadata } from "next";
 import { CreateForm } from "./create-form";
 
