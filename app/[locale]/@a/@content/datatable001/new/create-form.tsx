@@ -145,11 +145,12 @@ export const CreateForm = ({ options }: Props) => {
   const backLink = useClientPath("/datatable001");
 
   return (
-    <Form {...form.props} className="w-full">
+    <Form {...form.props} className="block grow">
+      {msgContext}
       <Card
         title={t("datatable001")}
         extra={[
-          <Link href={backLink} key="back">
+          <Link href={backLink} key="back" replace>
             <Button>{t("back")}</Button>
           </Link>,
           <Button {...form.buttonProps.submit} key="submit" className="ml-3">
@@ -157,11 +158,16 @@ export const CreateForm = ({ options }: Props) => {
           </Button>,
         ]}
       >
-        {msgContext}
         <div className="mb-3 flex w-full items-center justify-between">
           <Breadcrumb
             items={[
-              { title: <Link href={backLink}>{t("datatable001")}</Link> },
+              {
+                title: (
+                  <Link href={backLink} replace>
+                    {t("datatable001")}
+                  </Link>
+                ),
+              },
               { title: t("create") },
             ]}
           />

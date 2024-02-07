@@ -23,4 +23,5 @@ export default {
   search: "検索",
   deleteConfirm: "この項目を削除してもよろしいですか?",
   back: "リストに戻る",
+  updatedAt: "更新時間",
 } as const;

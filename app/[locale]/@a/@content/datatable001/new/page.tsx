@@ -22,7 +22,7 @@ const getDatatabel002Options = async () => {
 export default async function Page() {
   const datatable002Options = await getDatatabel002Options();
   return (
-    <div>
+    <div className="flex w-full">
       <CreateForm options={{ datatable002: datatable002Options }} />
     </div>
   );

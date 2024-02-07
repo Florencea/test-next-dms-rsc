@@ -23,4 +23,5 @@ export default {
   search: "搜尋",
   deleteConfirm: "你確定要刪除這筆資料嗎？",
   back: "返回列表",
+  updatedAt: "最近更新時間",
 } as const;
