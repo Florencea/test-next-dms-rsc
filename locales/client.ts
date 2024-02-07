@@ -8,7 +8,7 @@ export const {
   useCurrentLocale,
   useChangeLocale,
 } = createI18nClient({
-  "en-US": () => import("./data/en-US"),
-  "zh-TW": () => import("./data/zh-TW"),
-  "ja-JP": () => import("./data/ja-JP"),
+  en: () => import("./data/en"),
+  tw: () => import("./data/tw"),
+  jp: () => import("./data/jp"),
 });

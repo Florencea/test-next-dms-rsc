@@ -2,8 +2,8 @@ import { createI18nMiddleware } from "next-international/middleware";
 import { NextRequest } from "next/server";
 
 const I18nMiddleware = createI18nMiddleware({
-  locales: ["en-US", "ja-JP", "zh-TW"],
-  defaultLocale: "zh-TW",
+  locales: ["en", "jp", "tw"],
+  defaultLocale: "tw",
 });
 
 export function middleware(request: NextRequest) {
