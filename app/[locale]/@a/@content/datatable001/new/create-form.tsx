@@ -2,7 +2,6 @@
 
 import { useData } from "@/data/useData";
 import { useI18n } from "@/locales/client";
-import { useClientPath } from "@/utils/client";
 import {
   Breadcrumb,
   Button,
@@ -142,7 +141,7 @@ export const CreateForm = ({ options }: Props) => {
     action: create,
   });
 
-  const backLink = useClientPath("/datatable001");
+  const backLink = "/datatable001";
 
   return (
     <Form {...form.props} className="block grow">

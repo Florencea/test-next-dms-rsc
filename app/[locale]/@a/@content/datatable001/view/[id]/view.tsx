@@ -1,7 +1,7 @@
 "use client";
 
 import { useI18n } from "@/locales/client";
-import { useClientPath, useFormat } from "@/utils/client";
+import { useFormat } from "@/utils/client";
 import type { Datatable001 } from "@prisma/client";
 import { Breadcrumb, Button, Card, Descriptions } from "antd";
 import Link from "next/link";
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const View = ({ item }: Props) => {
-  const backLink = useClientPath("/datatable001");
+  const backLink = "/datatable001";
   const t = useI18n();
   const { renderText, renderDatetime, renderBoolean } = useFormat();
   return (

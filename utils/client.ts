@@ -1,10 +1,5 @@
-import { useCurrentLocale, useI18n } from "@/locales/client";
+import { useI18n } from "@/locales/client";
 import dayjs, { Dayjs } from "dayjs";
-
-export const useClientPath = (path: string) => {
-  const currentLocale = useCurrentLocale();
-  return `/${currentLocale}${path}`;
-};
 
 export const useFormat = () => {
   const emptyText = "-";

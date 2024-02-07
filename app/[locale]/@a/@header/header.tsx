@@ -2,7 +2,6 @@
 
 import { SITE_TITLE } from "@/configs/site";
 import { DEFAULT_PRIVATE_ROUTE } from "@/constants/route";
-import { useClientPath } from "@/utils/client";
 import { Layout, Typography } from "antd";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,11 +16,10 @@ interface Props {
 }
 
 export const Header = ({ userName }: Props) => {
-  const logoLink = useClientPath(DEFAULT_PRIVATE_ROUTE);
   return (
     <AntdHeader className="sticky top-0 z-10 flex w-full items-stretch justify-between">
       <div className="flex items-center justify-start gap-3 text-lg font-bold">
-        <Link href={logoLink}>
+        <Link href={DEFAULT_PRIVATE_ROUTE}>
           <Image src="/icon.svg" alt="logo" width={32} height={32} />
         </Link>
         <h1>{SITE_TITLE}</h1>

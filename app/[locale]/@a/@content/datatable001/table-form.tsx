@@ -3,7 +3,7 @@
 import type { ListT } from "@/constants/data";
 import { useData } from "@/data/useData";
 import { useI18n } from "@/locales/client";
-import { useClientPath, useFormat } from "@/utils/client";
+import { useFormat } from "@/utils/client";
 import {
   Button,
   Card,
@@ -104,7 +104,7 @@ export const TableForm = () => {
   const current = Form.useWatch("current", form.instance);
   const pageSize = Form.useWatch("pageSize", form.instance);
 
-  const itemLinkPrefix = useClientPath("/datatable001");
+  const itemLinkPrefix = "/datatable001";
 
   const tableProps: TableProps<Datatable001RecordT> = {
     rowKey: "id",
@@ -191,7 +191,7 @@ export const TableForm = () => {
     <Card
       title={t("datatable001")}
       extra={[
-        <Link key="create" href={useClientPath("/datatable001/new")}>
+        <Link key="create" href="/datatable001/new">
           <Button>{t("create")}</Button>
         </Link>,
       ]}

@@ -3,7 +3,6 @@
 import { type ActionT } from "@/constants/data";
 import { checkIsLogin, errorHandler } from "@/data/auth";
 import { prisma } from "@/prisma";
-import { getServerPath } from "@/utils/server";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -49,5 +48,5 @@ export const create: ActionT<{}> = async (
   } catch (err) {
     return errorHandler(err);
   }
-  redirect(getServerPath("/datatable001"));
+  redirect("/datatable001");
 };

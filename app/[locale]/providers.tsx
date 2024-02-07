@@ -21,9 +21,9 @@ interface Props {
 
 export const Providers = ({ children, locale }: Props) => {
   const localeMap: Record<string, Locale> = {
-    tw: zhTW,
-    en: enUS,
-    jp: jaJP,
+    "zh-TW": zhTW,
+    "en-US": enUS,
+    "ja-JP": jaJP,
   };
 
   return (

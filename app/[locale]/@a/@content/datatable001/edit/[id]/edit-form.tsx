@@ -2,7 +2,7 @@
 
 import { useData } from "@/data/useData";
 import { useI18n } from "@/locales/client";
-import { useClientPath, useFormat } from "@/utils/client";
+import { useFormat } from "@/utils/client";
 import type { Datatable001 } from "@prisma/client";
 import {
   Breadcrumb,
@@ -151,7 +151,7 @@ export const Edit = ({ item, options }: Props) => {
     action: edit,
   });
 
-  const backLink = useClientPath("/datatable001");
+  const backLink = "/datatable001";
 
   return (
     <Form {...form.props} className="block grow">
@@ -162,7 +162,7 @@ export const Edit = ({ item, options }: Props) => {
       <Card
         title={t("datatable001")}
         extra={[
-          <Link href={backLink} key="back" replace>
+          <Link href="/datatable001" key="back" replace>
             <Button>{t("back")}</Button>
           </Link>,
           <Button {...form.buttonProps.submit} key="submit" className="ml-3">

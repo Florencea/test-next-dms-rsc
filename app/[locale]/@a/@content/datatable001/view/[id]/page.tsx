@@ -1,7 +1,7 @@
 import { checkIsLogin, errorHandler } from "@/data/auth";
 import { getI18n } from "@/locales/server";
 import { prisma } from "@/prisma";
-import { generateMeta, getServerPath } from "@/utils/server";
+import { generateMeta } from "@/utils/server";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { View } from "./view";
@@ -40,6 +40,6 @@ export default async function Page({ params }: { params: { id: string } }) {
       </div>
     );
   } else {
-    redirect(getServerPath("/datatable001"));
+    redirect("/datatable001");
   }
 }

@@ -12,15 +12,15 @@ export const I18nSwitcher = () => {
   const items: MenuProps["items"] = [
     {
       label: "繁體中文",
-      key: "tw",
+      key: "zh-TW",
     },
     {
       label: "English",
-      key: "en",
+      key: "en-US",
     },
     {
       label: "日本語",
-      key: "jp",
+      key: "ja-JP",
     },
   ];
 
@@ -31,7 +31,7 @@ export const I18nSwitcher = () => {
         selectedKeys: [currentLocale],
         items,
         onClick: ({ key }) => {
-          if (key === "tw" || key === "en" || key === "jp") {
+          if (key === "zh-TW" || key === "en-US" || key === "ja-JP") {
             changeLocale(key);
           }
         },

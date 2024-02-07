@@ -4,7 +4,6 @@ import { DataError, type ActionT } from "@/constants/data";
 import { DEFAULT_PRIVATE_ROUTE } from "@/constants/route";
 import { errorHandler, getCurrentUser } from "@/data/auth";
 import { prisma } from "@/prisma";
-import { getServerPath } from "@/utils/server";
 import { verify } from "argon2";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -51,5 +50,5 @@ export const login: ActionT<{}> = async (
   } catch (err) {
     return errorHandler(err);
   }
-  redirect(getServerPath(DEFAULT_PRIVATE_ROUTE));
+  redirect(DEFAULT_PRIVATE_ROUTE);
 };
