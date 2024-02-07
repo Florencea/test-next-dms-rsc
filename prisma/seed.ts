@@ -15,6 +15,14 @@ async function main() {
     create: { ...DEFAULT_ADMIN },
     update: { ...DEFAULT_ADMIN },
   });
+  await prisma.datatable002.create({
+    data: {
+      stringColumn: "xxx",
+      floatColumn: 1.2,
+      integerColumn: 1,
+      booleanColumn: true,
+    },
+  });
 }
 main()
   .then(async () => {

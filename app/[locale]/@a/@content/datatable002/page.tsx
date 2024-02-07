@@ -1,8 +1,11 @@
+import { getI18n } from "@/locales/server";
 import { generateMeta } from "@/utils/site";
 import { Metadata } from "next";
 
-export const metadata: Metadata = generateMeta("星星管理");
-
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getI18n();
+  return generateMeta(t("datatable002"));
+}
 export default function Page() {
   return (
     <div>

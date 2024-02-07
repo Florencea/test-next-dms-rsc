@@ -4,13 +4,40 @@ import { DataError, type ActionT } from "@/constants/data";
 import { errorHandler, isLogin } from "@/data/auth";
 import { prisma } from "@/prisma";
 import { getServerPath } from "@/utils/server";
-import type { Fish } from "@prisma/client";
+import type { Datatable001 } from "@prisma/client";
 import { redirect } from "next/navigation";
+import { z } from "zod";
 
-export type FishCreateT = Pick<
-  Fish,
-  "name" | "col1" | "col2" | "col3" | "col4" | "col5"
+export type Datatable001CreateT = Omit<
+  Datatable001,
+  "id" | "createdAt" | "updatedAt"
 >;
+
+const input = z
+  .object({
+    stringColumn1: z.coerce.string(),
+    stringColumn2: z.coerce.string(),
+    stringColumn3: z.coerce.string(),
+    stringColumn4: z.coerce.string(),
+    stringColumn5: z.coerce.string(),
+    floatColumn1: z.coerce.number(),
+    floatColumn2: z.coerce.number(),
+    floatColumn3: z.coerce.number(),
+    floatColumn4: z.coerce.number(),
+    floatColumn5: z.coerce.number(),
+    integerColumn1: z.coerce.number().int(),
+    integerColumn2: z.coerce.number().int(),
+    integerColumn3: z.coerce.number().int(),
+    integerColumn4: z.coerce.number().int(),
+    integerColumn5: z.coerce.number().int(),
+    booleanColumn1: z.coerce.boolean(),
+    booleanColumn2: z.coerce.boolean(),
+    booleanColumn3: z.coerce.boolean(),
+    booleanColumn4: z.coerce.boolean(),
+    booleanColumn5: z.coerce.boolean(),
+    datatable002Id: z.coerce.string(),
+  })
+  .required();
 
 export const create: ActionT<{}> = async (
   prevState: unknown,
@@ -23,14 +50,8 @@ export const create: ActionT<{}> = async (
         status: "UNAUTHORIZED",
       });
 
-    const name = formData.get("name")?.toString() ?? "";
-    const col1 = formData.get("col1")?.toString() ?? "";
-    const col2 = parseFloat(formData.get("col2")?.toString() ?? "") ?? 0;
-    const col3 = formData.get("col3")?.toString() ?? "";
-    const col4 = formData.get("col4")?.toString() ?? "";
-    const col5 = formData.get("col5")?.toString() ?? "";
-
-    await prisma.fish.create({ data: { name, col1, col2, col3, col4, col5 } });
+    const data = input.parse(Object.fromEntries(formData.entries()));
+    await prisma.datatable001.create({ data });
   } catch (err) {
     return errorHandler(err);
   }

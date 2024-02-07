@@ -6,6 +6,7 @@ import type { User } from "@prisma/client";
 import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
 import { cache } from "react";
+import { ZodError } from "zod";
 
 export const getCurrentUser = cache(async () => {
   const user = getIronSession<Partial<Pick<User, "id" | "account" | "name">>>(
@@ -25,6 +26,13 @@ export const isLogin = async () => {
 
 export const errorHandler = (err: unknown) => {
   if (err instanceof DataError) return err.toMessage();
+  if (err instanceof ZodError)
+    return new DataError({
+      message: err.errors
+        .map(({ path, message }) => `${path}: ${message}`)
+        .join(", "),
+      status: "BAD_REQUEST",
+    }).toMessage();
   return new DataError({
     message: "Server error",
     status: "SERVER_ERROR",

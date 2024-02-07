@@ -20,15 +20,15 @@ import { useEffect } from "react";
 import {
   getList,
   remove,
-  type FishRecordT,
-  type FishSearchParamsT,
+  type Datatable001RecordT,
+  type Datatable001SearchParamsT,
 } from "./actions";
 
 export const TableForm = () => {
   const t = useI18n();
   const { form, data, isLoading } = useData<
-    FishSearchParamsT,
-    { list: FishRecordT[]; total: number }
+    Datatable001SearchParamsT,
+    { list: Datatable001RecordT[]; total: number }
   >({
     form: {
       props: {
@@ -39,19 +39,19 @@ export const TableForm = () => {
         },
       },
       itemprops: {
-        name: {
-          name: "name",
-          label: "名稱",
+        stringColumn1: {
+          name: "stringColumn1",
+          label: t("stringColumn", { idx: 1 }),
           rules: [{ required: false }],
         },
-        col1: {
-          name: "col1",
-          label: "欄位1",
+        stringColumn2: {
+          name: "stringColumn2",
+          label: t("stringColumn", { idx: 2 }),
           rules: [{ required: false }],
         },
         period: {
           name: "period",
-          label: "建立時間",
+          label: t("createdAt"),
           rules: [{ required: false }],
         },
         start: {
@@ -83,7 +83,7 @@ export const TableForm = () => {
     form: formRemove,
     isLoading: isRemoving,
     msgContext: msgContextRemove,
-  } = useData<Pick<FishRecordT, "id">, {}>({
+  } = useData<Pick<Datatable001RecordT, "id">, {}>({
     form: {
       props: {},
       itemprops: {
@@ -104,11 +104,11 @@ export const TableForm = () => {
 
   const itemLinkPrefix = useClientPath("/datatable001");
 
-  const tableProps: TableProps<FishRecordT> = {
+  const tableProps: TableProps<Datatable001RecordT> = {
     rowKey: "id",
     columns: [
       {
-        title: "操作",
+        title: t("operation"),
         dataIndex: "id",
         width: 160,
         render: (_, record) => {
@@ -123,7 +123,7 @@ export const TableForm = () => {
                   <Input />
                 </Form.Item>
                 <Popconfirm
-                  title="你確定要刪除這筆資料嗎？"
+                  title={t("deleteConfirm")}
                   icon={null}
                   onConfirm={() => {
                     formRemove.instance.setFieldValue("id", record.id);
@@ -131,8 +131,8 @@ export const TableForm = () => {
                     form.instance.submit();
                   }}
                   okButtonProps={{ danger: true, type: "primary" }}
-                  okText="是"
-                  cancelText="否"
+                  okText={t("yes")}
+                  cancelText={t("no")}
                 >
                   <Button danger>{t("remove")}</Button>
                 </Popconfirm>
@@ -142,15 +142,15 @@ export const TableForm = () => {
         },
       },
       {
-        title: "名稱",
-        dataIndex: "name",
+        title: t("stringColumn", { idx: 1 }),
+        dataIndex: "stringColumn1",
       },
       {
-        title: "欄位1",
-        dataIndex: "col1",
+        title: t("stringColumn", { idx: 2 }),
+        dataIndex: "stringColumn2",
       },
       {
-        title: "建立時間",
+        title: t("createdAt"),
         dataIndex: "createdAt",
         render: (_, record) =>
           dayjs(record.createdAt).format("YYYY-MM-DD HH:mm:ss"),
@@ -161,9 +161,9 @@ export const TableForm = () => {
     pagination: {
       showSizeChanger: true,
       showTotal: (total, [start, end]) =>
-        `目前是 ${total} 筆中的 第 ${start} 筆到第 ${end} 筆`,
+        t("tableShowTotal", { total, start, end }),
       locale: {
-        items_per_page: "筆/頁",
+        items_per_page: t("tableItemPerPage"),
       },
       current,
       pageSize,
@@ -191,10 +191,10 @@ export const TableForm = () => {
       {msgContextRemove}
       <Space className="w-full" direction="vertical" size="large">
         <Form {...form.props}>
-          <Form.Item {...form.itemprops.name}>
+          <Form.Item {...form.itemprops.stringColumn1}>
             <Input />
           </Form.Item>
-          <Form.Item {...form.itemprops.col1}>
+          <Form.Item {...form.itemprops.stringColumn2}>
             <Input />
           </Form.Item>
           <Form.Item {...form.itemprops.period}>
@@ -216,9 +216,9 @@ export const TableForm = () => {
             <Input />
           </Form.Item>
           <Form.Item>
-            <Button {...form.buttonProps.reset}>重置</Button>
+            <Button {...form.buttonProps.reset}>{t("reset")}</Button>
           </Form.Item>
-          <Button {...form.buttonProps.submit}>搜尋</Button>
+          <Button {...form.buttonProps.submit}>{t("search")}</Button>
         </Form>
         <Table {...tableProps} />
       </Space>

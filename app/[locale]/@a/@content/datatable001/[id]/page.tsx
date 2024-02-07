@@ -1,5 +1,6 @@
 import { DataError } from "@/constants/data";
 import { isLogin } from "@/data/auth";
+import { getI18n } from "@/locales/server";
 import { prisma } from "@/prisma";
 import { getServerPath } from "@/utils/server";
 import { generateMeta } from "@/utils/site";
@@ -7,7 +8,16 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { View } from "./view";
 
-export const metadata: Metadata = generateMeta("查看魚類");
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const { id } = params;
+  const item = await getItem(id);
+  const t = await getI18n();
+  return generateMeta(`${item?.name} - ${t("datatable001")}`);
+}
 
 const getItem = async (id: string) => {
   try {

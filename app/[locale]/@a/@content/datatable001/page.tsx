@@ -1,8 +1,12 @@
+import { getI18n } from "@/locales/server";
 import { generateMeta } from "@/utils/site";
 import { Metadata } from "next";
 import { TableForm } from "./table-form";
 
-export const metadata: Metadata = generateMeta("魚類管理");
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getI18n();
+  return generateMeta(t("datatable001"));
+}
 
 export default function Page() {
   return (
