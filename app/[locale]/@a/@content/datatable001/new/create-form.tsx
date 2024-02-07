@@ -145,9 +145,19 @@ export const CreateForm = ({ options }: Props) => {
   const backLink = useClientPath("/datatable001");
 
   return (
-    <Card>
-      {msgContext}
-      <Form {...form.props} className="w-full">
+    <Form {...form.props} className="w-full">
+      <Card
+        title={t("datatable001")}
+        extra={[
+          <Link href={backLink} key="back">
+            <Button>{t("back")}</Button>
+          </Link>,
+          <Button {...form.buttonProps.submit} key="submit" className="ml-3">
+            {t("create")}
+          </Button>,
+        ]}
+      >
+        {msgContext}
         <div className="mb-3 flex w-full items-center justify-between">
           <Breadcrumb
             items={[
@@ -155,7 +165,6 @@ export const CreateForm = ({ options }: Props) => {
               { title: t("create") },
             ]}
           />
-          <Button {...form.buttonProps.submit}>{t("create")}</Button>
         </div>
         <Descriptions bordered className="mb-3 w-full">
           <Descriptions.Item label={form.itemprops.stringColumn1.label}>
@@ -333,7 +342,7 @@ export const CreateForm = ({ options }: Props) => {
             </Form.Item>
           </Descriptions.Item>
         </Descriptions>
-      </Form>
-    </Card>
+      </Card>
+    </Form>
   );
 };

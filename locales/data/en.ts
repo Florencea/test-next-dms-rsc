@@ -22,4 +22,5 @@ export default {
   reset: "reset",
   search: "Search",
   deleteConfirm: "Are you sure you want to delete this item?",
+  back: "Back to List",
 } as const;

@@ -22,4 +22,5 @@ export default {
   reset: "重置",
   search: "搜尋",
   deleteConfirm: "你確定要刪除這筆資料嗎？",
+  back: "返回列表",
 } as const;
