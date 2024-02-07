@@ -16,7 +16,7 @@ export default async function RootLayout({
   params: { locale: string };
 }>) {
   return (
-    <html lang="zh-TW">
+    <html lang={locale}>
       <body id="__next">
         <Providers locale={locale}>{(await isLogin()) ? a : u}</Providers>
       </body>
