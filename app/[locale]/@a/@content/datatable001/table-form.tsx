@@ -118,8 +118,8 @@ export const TableForm = ({ data }: Props) => {
 
   const start = Form.useWatch("start", form.instance);
   const end = Form.useWatch("end", form.instance);
-  const current = Form.useWatch("current", form.instance);
-  const pageSize = Form.useWatch("pageSize", form.instance);
+  const current = Form.useWatch("current", form.instance) ?? 1;
+  const pageSize = Form.useWatch("pageSize", form.instance) ?? 10;
 
   const itemLinkPrefix = "/datatable001";
 
