@@ -92,7 +92,6 @@ export const login = async (prevState: unknown, formData: FormData) => {
     session.name = user.name;
     await session.save();
   } catch (err) {
-    console.log(err);
     return errorHandler(err);
   }
   redirect(DEFAULT_PRIVATE_ROUTE);
