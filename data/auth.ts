@@ -56,7 +56,7 @@ export const checkIsLogin = async () => {
 
 const loginSchema = z
   .object({
-    account: z.string().startsWith("aida"),
+    account: z.string(),
     password: z.string(),
   })
   .required();
