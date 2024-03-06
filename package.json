@@ -17,7 +17,7 @@
     "@ant-design/nextjs-registry": "^1.0.0",
     "@prisma/client": "^5.10.2",
     "@types/node": "^20.11.25",
-    "@types/react": "^18.2.63",
+    "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.20",
     "antd": "^5.15.0",
     "argon2": "^0.40.1",
