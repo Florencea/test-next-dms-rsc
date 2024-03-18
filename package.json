@@ -13,7 +13,7 @@
   "dependencies": {
     "@ant-design/colors": "^7.0.2",
     "@ant-design/cssinjs": "^1.18.4",
-    "@ant-design/icons": "^5.3.3",
+    "@ant-design/icons": "^5.3.4",
     "@ant-design/nextjs-registry": "^1.0.0",
     "@prisma/client": "^5.11.0",
     "@types/node": "^20.11.28",
